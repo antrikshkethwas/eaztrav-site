@@ -1,0 +1,9 @@
+npm run dev
+
+npm run dev -- -H 0.0.0.0
+
+ipconfig: 192.168.29.60
+
+
+
+http://192.168.29.60:3000
