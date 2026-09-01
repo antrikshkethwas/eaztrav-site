@@ -24,6 +24,12 @@ const scooters: Scooter[] = [
     price: { daily: "₹400", hourly: "₹150" },
     img: "/images/activa_compressed.png",
   },
+  {
+    name: "RE classic 350",
+    type: "Bike",
+    price: { daily: "₹1000", hourly: "350" },
+    img: "/images/classic350_compressed.png",
+  }
 ];
 
 const WHATSAPP_NUMBER = "919713571690"; // WhatsApp number, country code + number, no + or spaces
@@ -158,6 +164,14 @@ function ScooterCard({ scooter }: { scooter: Scooter }) {
 export default function Ujjain() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Contact Bar */}
+        <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
+          <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
+          <span>✉️ easy.stay.ujjain@gmail.com</span>
+          <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
+          <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
+        </div>
+
         {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
          <div>
@@ -172,10 +186,13 @@ export default function Ujjain() {
           <a href="#about" className="hover:text-gray-900">About</a>
           <a href="#contact" className="hover:text-gray-900">Contact</a>
         </div>
+        {/*
         <button className="bg-gray-900 text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition">
           Book Now
         </button>
+        */}
       </nav>
+       
 
       <div className="text-center mb-14  px-6 py-16">
         <h1 className="text-4xl font-bold text-gray-900">Rent a scooter in Ujjain</h1>

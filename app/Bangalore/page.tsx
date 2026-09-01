@@ -1,33 +1,46 @@
-const cabs = [
-  { name: "Tata Nexon", type: "Compact SUV", price: "₹12/km" },
-  { name: "Suzuki Dezire", type: "Sedan", price: "₹10/km" },
-  { name: "Suzuki Wagon-R", type: "Hatchback", price: "₹8/km" },
-  { name: "MG ZS EV", type: "Electric SUV", price: "₹15/km" },
-];
+import Link from "next/link";
 
 export default function Bangalore() {
   return (
-    <main className="min-h-screen bg-white px-6 py-16">
-      <div className="text-center mb-14">
-        <h1 className="text-4xl font-bold text-gray-900">Cabs in Bangalore</h1>
-        <p className="mt-4 text-gray-600 max-w-md mx-auto">
-          Book a reliable ride anywhere in Bangalore, anytime.
-        </p>
-      </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+{/* Contact Bar */}
+      <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
+          <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
+          <span>✉️ easy.stay.ujjain@gmail.com</span>
+          <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
+          <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
+        </div>
 
-      <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
-        {cabs.map((cab) => (
-          <div
-            key={cab.name}
-            className="border border-gray-100 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition"
-          >
-            <div className="text-4xl mb-4">🚗</div>
-            <h3 className="text-lg font-semibold text-gray-900">{cab.name}</h3>
-            <p className="text-sm text-gray-500 mt-1">{cab.type}</p>
-            <p className="text-sm font-medium text-gray-900 mt-3">{cab.price}</p>
+      {/* Navbar */}
+      <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
+        <Link href="/" className="inline-block">
+          <div className="text-2xl font-bold text-gray-900">
+            Eaz<span className="text-yellow-500">Trav</span>
           </div>
-        ))}
+          <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
+        </Link>
+      </nav>
+
+      {/* Coming Soon content */}
+      <div className="flex flex-col items-center justify-center text-center px-6 py-32">
+        <div className="text-6xl mb-6">🚗</div>
+        <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
+          Coming Soon
+        </span>
+        <h1 className="text-4xl font-bold text-gray-900 max-w-lg">
+          Cabs in Bangalore are on their way
+        </h1>
+        <p className="mt-4 text-gray-600 max-w-md">
+          We&apos;re setting things up. Check back soon, or head over to Ujjain where scooters are ready to book.
+        </p>
+        <Link
+          href="/Ujjain"
+          className="mt-8 bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition"
+        >
+          Explore Ujjain Instead
+        </Link>
       </div>
     </main>
   );
 }
+
