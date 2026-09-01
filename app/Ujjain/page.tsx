@@ -32,8 +32,8 @@ const scooters: Scooter[] = [
   }
 ];
 
-const WHATSAPP_NUMBER = "919713571690"; // WhatsApp number, country code + number, no + or spaces
-const CALL_NUMBER = "+919713571690"; // Call number, with + and country code
+const WHATSAPP_NUMBER = "919752087904"; // WhatsApp number, country code + number, no + or spaces
+const CALL_NUMBER = "+919752087904"; // Call number, with + and country code
 
 // Generate next 14 days as readable date strings
 function getDateOptions() {
