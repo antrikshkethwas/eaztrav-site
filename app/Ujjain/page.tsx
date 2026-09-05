@@ -186,15 +186,15 @@ export default function Ujjain() {
                 <span>📞</span> <span>book on call</span>
               </a>
           </nav>       
-{/*
-      <div className="text-center mb-6  px-6 py-2">
-        <h1 className="text-xl font-bold text-gray-900">Rent a scooter in Ujjain</h1>
-        <p className="mt-4 text-gray-600 max-w-md mx-auto">
+
+      <div className="text-center mb-2  px-6 py-1">
+        <h1 className="text-xl font-bold text-gray-900">📍Ujjain</h1>
+        <p className="text-xs text-gray-600 max-w-md mx-auto">
           Well-maintained 2 wheelers available for rent.
         </p>
       </div>
-*/}
-      <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+
+      <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
         {scooters.map((scooter) => (
           <ScooterCard key={scooter.name} scooter={scooter} />
         ))}
