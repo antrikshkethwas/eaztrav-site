@@ -26,7 +26,7 @@ const scooters: Scooter[] = [
   },
   {
     name: "RE classic 350",
-    type: "Bike",
+    type: "Bike(coming soon)",
     price: { daily: "₹1000", hourly: "350" },
     img: "/images/classic350_compressed.png",
   }
@@ -164,43 +164,36 @@ function ScooterCard({ scooter }: { scooter: Scooter }) {
 export default function Ujjain() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Contact Bar */}
-        <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
-          <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
-          <span>✉️ easy.stay.ujjain@gmail.com</span>
-          <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
-          <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
-        </div>
+
 
         {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
-         <div>
-          <div className="text-2xl font-bold text-gray-900">
-          Eaz<span className="text-yellow-500">Tay</span>
-          </div>
-          <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
-         </div>
+        <nav className="flex items-center justify-between px-4 sm:px-6 py-2 bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
+              {/* Left: Clickable Logo redirecting to Home */}
+              <Link href="/" className="group flex flex-col min-w-max">
+                <div className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:opacity-80 transition">
+                  Eaz<span className="text-yellow-500">Tay</span>
+                </div>
+                <p className="text-[9px] sm:text-[10px] text-gray-500 tracking-wide uppercase font-semibold">
+                  Travel with Eaze
+                </p>
+              </Link>
 
-         <div className="hidden md:flex gap-8 text-gray-600 font-medium">
-          <a href="#services" className="hover:text-gray-900">Services</a>
-          <a href="#about" className="hover:text-gray-900">About</a>
-          <a href="#contact" className="hover:text-gray-900">Contact</a>
-        </div>
-        {/*
-        <button className="bg-gray-900 text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition">
-          Book Now
-        </button>
-        */}
-      </nav>
-       
-
-      <div className="text-center mb-14  px-6 py-16">
-        <h1 className="text-4xl font-bold text-gray-900">Rent a scooter in Ujjain</h1>
+              {/* Right: Clickable Call Button */}
+              <a
+                href="tel:+919752087904"
+                className="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition shadow-sm whitespace-nowrap"
+              >
+                <span>📞</span> <span>book on call</span>
+              </a>
+          </nav>       
+{/*
+      <div className="text-center mb-6  px-6 py-2">
+        <h1 className="text-xl font-bold text-gray-900">Rent a scooter in Ujjain</h1>
         <p className="mt-4 text-gray-600 max-w-md mx-auto">
-          Well-maintained scooters available on hourly or daily rental.
+          Well-maintained 2 wheelers available for rent.
         </p>
       </div>
-
+*/}
       <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
         {scooters.map((scooter) => (
           <ScooterCard key={scooter.name} scooter={scooter} />
