@@ -7,3 +7,46 @@ ipconfig: 192.168.29.60
 
 
 http://192.168.29.60:3000
+
+
+production:
+npm run build
+npm run start
+
+
+
+//initializing git 
+
+git init
+git add
+git commit -m "Initial commit"
+
+
+git remote add origin https://github.com/antrikshkethwas/eaztrav-site.git
+git branch -M main
+git push -u origin main
+
+npx plugins add vercel/vercel-plugin
+
+
+
+===============================git commands=======================
+
+*) After every update, follow below process:
+
+git add app/Ujjain/page.tsx
+
+git commit -m "updated for eaztrav.com website, along with SEO meta data updates"
+
+git push -u origin main
+
+
+
+
+
+Address: 📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
+email: easy.stay.ujjain@gmail.com</span>
+      
+            <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
+          <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
+        </div>

@@ -13,7 +13,7 @@ export default function Home() {
       <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
          <div>
           <div className="text-2xl font-bold text-gray-900">
-          Eaz<span className="text-yellow-500">Trav</span>
+          Eaz<span className="text-yellow-500">Tay</span>
           </div>
           <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
          </div>
