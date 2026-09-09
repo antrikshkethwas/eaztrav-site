@@ -21,12 +21,17 @@ export default function Home() {
         <div className="hidden md:flex gap-8 text-gray-600 font-medium">
           <a href="#services" className="hover:text-gray-900">Services</a>
           <a href="#about" className="hover:text-gray-900">About</a>
-          <a href="#contact" className="hover:text-gray-900">Contact</a>
+          <a href="/contact" className="hover:text-gray-900">Contact</a>
         </div>
-        <button className="bg-gray-900 text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition">
-          Book Now
-        </button>
+        <a
+  href="tel:+919752087904"
+  className="bg-gray-900 text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition inline-block"
+>
+  Book Now
+</a>
       </nav>
+      
+
       
             {/* City Selector */}
       <section className="flex flex-col items-center justify-center py-24 px-6 bg-gray-50">
