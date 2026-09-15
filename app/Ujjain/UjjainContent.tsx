@@ -171,7 +171,7 @@ export default function UjjainContent() {
               {/* Left: Clickable Logo redirecting to Home */}
               <Link href="/" className="group flex flex-col min-w-max">
                 <div className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:opacity-80 transition">
-                  Eaz<span className="text-yellow-500">Tay</span>
+                  Eaz<span className="text-yellow-500">Trav</span>
                 </div>
                 <p className="text-[9px] sm:text-[10px] text-gray-500 tracking-wide uppercase font-semibold">
                   Travel with Eaze
