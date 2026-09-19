@@ -1,31 +1,51 @@
+import Image from 'next/image'
+import Link from 'next/link'
 
+<Image
+      src="/logo.png"
+      alt="eazTrav"
+      width={140}
+      height={40}
+      priority
+/>
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white">
+      {/* contact 
       <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
           <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
           <span>✉️ easy.stay.ujjain@gmail.com</span>
           <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
           <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
         </div>
+
+        */}
       {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
-         <div>
-          <div className="text-2xl font-bold text-gray-900">
-          Eaz<span className="text-yellow-500">Trav</span>
-          </div>
-          <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
-         </div>
-        
+      <nav className="flex items-center justify-between px-2 py-5 border-b border-gray-100">
+         <Link href="/" className="group flex flex-col min-w-max">
+          <Image src="/images/logo.png" alt="eazTrav" width={160} height={50} priority />
+        </Link>
+
+     
+
+      
         <div className="hidden md:flex gap-8 text-gray-600 font-medium">
           <a href="#services" className="hover:text-gray-900">Services</a>
           <a href="#about" className="hover:text-gray-900">About</a>
           <a href="/contact" className="hover:text-gray-900">Contact</a>
         </div>
-        <a
+   
+{/*}        <a
   href="tel:+919752087904"
   className="bg-gray-900 text-white px-5 py-2 rounded-full font-medium hover:bg-gray-800 transition inline-block"
+>
+  Book Now
+</a>
+*/}
+<a
+  href="tel:+919752087904"
+  className="bg-[#173F73] text-white px-5 py-2 rounded-full font-medium hover:opacity-90 transition inline-block"
 >
   Book Now
 </a>
@@ -39,14 +59,14 @@ export default function Home() {
         <div className="flex flex-col md:flex-row gap-6">
           <a
             href="/Bangalore"
-            className="bg-yellow-500 text-gray-900 text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:bg-yellow-400 transition text-center"
+            className="bg-[#173F73] text-white-900 text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:opacity-90 transition text-center"
           >
             Bangalore
           </a>
           
           <a
             href="/Ujjain"
-            className="bg-gray-900 text-white text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:bg-gray-800 transition text-center"
+            className="bg-[#3FA3D1] text-white text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:opacity-90 transition text-center"
           >
             Ujjain
           </a>
@@ -56,13 +76,13 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center text-center px-6 py-24 bg-gradient-to-b from-gray-50 to-white">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 max-w-3xl leading-tight">
-          Your Ride, <span className="text-yellow-500">Anytime, Anywhere.</span>
+          Your Ride, <span className="text-[#3FA3D1]">Anytime, Anywhere.</span>
         </h1>
         <p className="mt-6 text-lg text-gray-600 max-w-xl">
           Fast, reliable, and affordable cab service at your fingertips. Book in seconds, ride in comfort.
         </p>
         <div className="mt-8 flex gap-4">
-          <button className="bg-yellow-500 text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">
+          <button className="bg-[#173F73] text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition">
             Book a Ride
           </button>
           <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-50 transition">

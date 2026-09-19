@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Bangalore() {
   return (
@@ -13,11 +14,8 @@ export default function Bangalore() {
 
       {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
-        <Link href="/" className="inline-block">
-          <div className="text-2xl font-bold text-gray-900">
-            Eaz<span className="text-yellow-500">Trav</span>
-          </div>
-          <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
+        <Link href="/" className="group flex flex-col min-w-max">
+          <Image src="/images/logo.png" alt="eazTrav" width={160} height={50} priority />
         </Link>
       </nav>
 

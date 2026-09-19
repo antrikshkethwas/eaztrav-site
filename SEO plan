@@ -1,0 +1,29 @@
+Deepen on-page content
+======================
+-Google ranks pages higher when they thoroughly answer the searcher's intent, not just mention the keyword once.
+
+* Add more content to the Ujjain page: pricing, scooter models, how booking works, areas
+* Naturally repeat variations: 'scooter rental in Ujjain', 'rent a scooter Ujjain', 'Ujjain bike
+* Add an FAQ section (e.g. 'How much does it cost to rent a scooter in Ujjain?') — these
+
+Add structured data (JSON-LD)
+=============================
+- Tells Google explicitly this is a local rental business, which can help it match local-intent searches more confidently.
+
+* Add LocalBusiness or Service schema with your service area, pricing, and offerings
+* This is the piece we discussed doing next — still pending
+
+Get a few backlinks
+====================
+-Other sites linking to you signals trust and relevance — one of the strongest ranking factors, especially for new domains competing against established players.
+
+* List your business on local directories (Justdial, Sulekha, local Ujjain business listings)
+* Ask any local partners, hostels, or travel blogs to link to your site
+* Get listed on Google Business Profile if you haven't already — this alone often boosts local search visibility significantly
+
+
+Check why other keywords show nothing at all
+============================================
+-If some keywords return zero results (not even page 10), that often means the page's wording doesn't closely match how people actually search.
+* Tell me the exact other keywords you tried — I can check if your page's actual text uses that phrasing
+* Sometimes 'not ranking' for a keyword means the word literally doesn't appear on the page anywhere

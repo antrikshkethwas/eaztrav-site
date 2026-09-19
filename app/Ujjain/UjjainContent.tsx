@@ -152,7 +152,7 @@ function ScooterCard({ scooter }: { scooter: Scooter }) {
         </button>
         <a
           href={`tel:${CALL_NUMBER}`}
-          className="flex-1 bg-gray-900 text-white font-semibold py-3 rounded-full hover:bg-gray-800 transition text-center"
+          className="flex-1 bg-[#173F73] text-white font-semibold py-3 rounded-full hover:opacity-90 transition text-center"
         >
           Book on call
         </a>
@@ -170,18 +170,14 @@ export default function UjjainContent() {
         <nav className="flex items-center justify-between px-4 sm:px-6 py-2 bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
               {/* Left: Clickable Logo redirecting to Home */}
               <Link href="/" className="group flex flex-col min-w-max">
-                <div className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:opacity-80 transition">
-                  Eaz<span className="text-yellow-500">Trav</span>
-                </div>
-                <p className="text-[9px] sm:text-[10px] text-gray-500 tracking-wide uppercase font-semibold">
-                  Travel with Eaze
-                </p>
+                <Image src="/images/logo.png" alt="eazTrav" width={160} height={50} priority />
               </Link>
+
 
               {/* Right: Clickable Call Button */}
               <a
                 href="tel:+919752087904"
-                className="flex items-center gap-1.5 bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition shadow-sm whitespace-nowrap"
+                className="flex items-center gap-1.5 bg-[#173F73] hover:bg-opacity-90 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition shadow-sm whitespace-nowrap"
               >
                 <span>📞</span> <span>book on call</span>
               </a>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Contact us | EazTrav",
@@ -10,11 +11,8 @@ export default function ContactPage() {
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Navbar */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
-        <Link href="/" className="inline-block">
-          <div className="text-2xl font-bold text-gray-900">
-            Eaz<span className="text-yellow-500">Trav</span>
-          </div>
-          <p className="text-xs text-gray-500 tracking-wide">Travel with Eaze</p>
+        <Link href="/" className="group flex flex-col min-w-max">
+          <Image src="/images/logo.png" alt="eazTrav" width={160} height={50} priority />
         </Link>
       </nav>
 
@@ -30,13 +28,13 @@ export default function ContactPage() {
           
           <a
             href="tel:+919752087904"
-            className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 rounded-full transition text-lg"
+            className="flex-1 bg-[#173F73] hover:bg-opacity-90 text-white font-semibold py-4 rounded-full transition text-lg"
           >
             📞 9752087904
           </a>
           <a
             href="tel:+918305587779"
-            className="flex-1 bg-gray-900 hover:bg-gray-800 text-white font-semibold py-4 rounded-full transition text-lg"
+            className="flex-1 bg-[#173F73] hover:bg-opacity-90 text-white font-semibold py-4 rounded-full transition text-lg"
           >
             📞 8305587779
           </a>
@@ -46,7 +44,7 @@ export default function ContactPage() {
       <div className="max-w-lg mx-auto px-6 py-16 text-center">
         <a
             href="/Ujjain"
-            className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 rounded-full transition text-lg"
+            className="flex-1 bg-[#173F73] hover:bg-opacity-90 text-white font-semibold py-4 rounded-full transition text-lg"
           >
             Or select a scooter 🛵 →
           </a>    
