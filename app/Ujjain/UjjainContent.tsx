@@ -214,6 +214,25 @@ export default function UjjainContent() {
           Looking for a scooter or bike on rent in Ujjain? EazTrav offers affordable two-wheeler rentals near Freeganj and Mahakaleshwar Temple, with hourly and daily options. Whether you&apos;re visiting for Simhastha, exploring the city, or need a quick ride around town, book a well-maintained Activa or Access 125 in minutes — no advance deposit hassle.
         </p>
       </div>
+
+      {/* Links to the Ujjain travel guide pages */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-12">
+        <h2 className="text-lg font-bold text-gray-900 mb-3 text-center">Planning your Ujjain trip?</h2>
+        <div className="grid sm:grid-cols-3 gap-3">
+          <Link href="/Ujjain/guide/mahakaleshwar-temple" className="block bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <p className="font-semibold text-gray-900">Mahakal darshan guide</p>
+            <p className="text-xs text-gray-500 mt-1">Timings, Bhasma Aarti booking and dress code</p>
+          </Link>
+          <Link href="/Ujjain/guide/itinerary" className="block bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <p className="font-semibold text-gray-900">1-day &amp; 2-day itinerary</p>
+            <p className="text-xs text-gray-500 mt-1">Which temples to see, and in what order</p>
+          </Link>
+          <Link href="/Ujjain/guide/getting-around" className="block bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition">
+            <p className="font-semibold text-gray-900">Getting around Ujjain</p>
+            <p className="text-xs text-gray-500 mt-1">Station to Mahakal, auto fares and distances</p>
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }
