@@ -196,6 +196,18 @@ export default function UjjainContent() {
         ))}
       </div>
 
+      {/* Link to car rental page */}
+      <Link
+        href="/Ujjain/car-rental"
+        className="flex items-center justify-between gap-4 max-w-3xl mx-4 sm:mx-auto mt-6 bg-[#173F73] text-white rounded-3xl px-6 py-5 shadow-sm hover:opacity-90 transition"
+      >
+        <div>
+          <p className="font-bold">🚗 Travelling with family? Rent a car</p>
+          <p className="text-xs text-white/80">For Omkareshwar trips, Indore airport transfers and more</p>
+        </div>
+        <span className="text-xl">→</span>
+      </Link>
+
       {/* SEO content */}
       <div className="max-w-2xl mx-auto px-6 py-12 text-sm text-gray-600 leading-relaxed text-center">
         <p>
