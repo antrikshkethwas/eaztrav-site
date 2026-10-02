@@ -8,6 +8,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 1,
     },
+    // Ujjain travel guide pages
+    {
+      url: 'https://www.eaztrav.com/Ujjain/guide/mahakaleshwar-temple',
+      lastModified: new Date('2026-09-30'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://www.eaztrav.com/Ujjain/guide/itinerary',
+      lastModified: new Date('2026-09-30'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://www.eaztrav.com/Ujjain/guide/getting-around',
+      lastModified: new Date('2026-09-30'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     /*
     {
       url: 'https://www.eaztrav.com/Bangalore',
