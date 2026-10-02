@@ -13,17 +13,17 @@ const CALL_NUMBER = "+919752087904";
 
 export const guides = [
   {
-    href: "/Ujjain/guide/mahakaleshwar-temple",
+    href: "/ujjain/guide/mahakaleshwar-temple",
     title: "Mahakaleshwar Temple Guide",
     blurb: "Darshan timings, Bhasma Aarti booking, dress code and parking.",
   },
   {
-    href: "/Ujjain/guide/itinerary",
+    href: "/ujjain/guide/itinerary",
     title: "Ujjain 1-Day & 2-Day Itinerary",
     blurb: "A temple-by-temple plan you can do on a scooter.",
   },
   {
-    href: "/Ujjain/guide/getting-around",
+    href: "/ujjain/guide/getting-around",
     title: "Getting Around Ujjain",
     blurb: "Railway station to Mahakal, auto fares vs renting a scooter.",
   },
@@ -52,7 +52,7 @@ export function ScooterCta({ message = "Hi, I want to rent a scooter in Ujjain" 
           Book on WhatsApp
         </a>
         <Link
-          href="/Ujjain"
+          href="/ujjain/scooter-rental"
           className="flex-1 bg-white text-[#173F73] font-semibold py-3 rounded-full hover:opacity-90 transition text-center"
         >
           See scooters &amp; prices
@@ -72,7 +72,7 @@ type GuidePageProps = {
 };
 
 export default function GuidePage({ slug, title, intro, updated, faqs, children }: GuidePageProps) {
-  const url = `${SITE_URL}/Ujjain/guide/${slug}`;
+  const url = `${SITE_URL}/ujjain/guide/${slug}`;
 
   const jsonLd = [
     {
@@ -94,7 +94,7 @@ export default function GuidePage({ slug, title, intro, updated, faqs, children 
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-        { "@type": "ListItem", position: 2, name: "Ujjain", item: `${SITE_URL}/Ujjain` },
+        { "@type": "ListItem", position: 2, name: "Ujjain", item: `${SITE_URL}/ujjain` },
         { "@type": "ListItem", position: 3, name: title, item: url },
       ],
     },
@@ -140,7 +140,7 @@ export default function GuidePage({ slug, title, intro, updated, faqs, children 
         <p className="text-xs text-gray-500 mb-4">
           <Link href="/" className="hover:underline">Home</Link>
           {" › "}
-          <Link href="/Ujjain" className="hover:underline">Ujjain</Link>
+          <Link href="/ujjain" className="hover:underline">Ujjain</Link>
           {" › "}
           <span>Travel guide</span>
         </p>
@@ -185,7 +185,7 @@ export default function GuidePage({ slug, title, intro, updated, faqs, children 
                 </Link>
               ))}
             <Link
-              href="/Ujjain"
+              href="/ujjain/scooter-rental"
               className="block bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition"
             >
               <p className="font-semibold text-gray-900">Scooter rental in Ujjain</p>

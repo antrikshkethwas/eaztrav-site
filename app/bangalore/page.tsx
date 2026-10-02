@@ -32,7 +32,7 @@ export default function Bangalore() {
           We&apos;re setting things up. Check back soon, or head over to Ujjain where scooters are ready to book.
         </p>
         <Link
-          href="/Ujjain"
+          href="/ujjain"
           className="mt-8 bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition"
         >
           Explore Ujjain Instead

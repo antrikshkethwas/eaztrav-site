@@ -58,14 +58,14 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-gray-900 mb-10">Choose Your City</h2>
         <div className="flex flex-col md:flex-row gap-6">
           <a
-            href="/Bangalore"
+            href="/bangalore"
             className="bg-[#173F73] text-white-900 text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:opacity-90 transition text-center"
           >
             Bangalore
           </a>
           
           <a
-            href="/Ujjain"
+            href="/ujjain"
             className="bg-[#3FA3D1] text-white text-xl font-semibold px-16 py-8 rounded-2xl shadow-md hover:opacity-90 transition text-center"
           >
             Ujjain

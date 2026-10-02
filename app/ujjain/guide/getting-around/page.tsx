@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Getting Around Ujjain: Railway Station to Mahakal, Auto Fares & Scooter Rental | EazTrav",
   description:
     "How to get from Ujjain railway station, bus stand or Indore airport to Mahakaleshwar temple, what autos and e-rickshaws cost, and why a rented scooter is the easiest way to see Ujjain.",
-  alternates: { canonical: "https://www.eaztrav.com/Ujjain/guide/getting-around" },
+  alternates: { canonical: "https://www.eaztrav.com/ujjain/guide/getting-around" },
 };
 
 const faqs: Faq[] = [
@@ -110,8 +110,8 @@ export default function GettingAroundGuide() {
       </p>
 
       <p>
-        Planning your day? See our <Link href="/Ujjain/guide/itinerary">1-day and 2-day Ujjain itinerary</Link> and the{" "}
-        <Link href="/Ujjain/guide/mahakaleshwar-temple">Mahakal darshan and Bhasma Aarti guide</Link>.
+        Planning your day? See our <Link href="/ujjain/guide/itinerary">1-day and 2-day Ujjain itinerary</Link> and the{" "}
+        <Link href="/ujjain/guide/mahakaleshwar-temple">Mahakal darshan and Bhasma Aarti guide</Link>.
       </p>
     </GuidePage>
   );

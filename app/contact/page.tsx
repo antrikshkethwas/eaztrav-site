@@ -43,7 +43,7 @@ export default function ContactPage() {
         {/* Explore scooters CTA */}
       <div className="max-w-lg mx-auto px-6 py-16 text-center">
         <a
-            href="/Ujjain"
+            href="/ujjain/scooter-rental"
             className="flex-1 bg-[#173F73] hover:bg-opacity-90 text-white font-semibold py-4 rounded-full transition text-lg"
           >
             Or select a scooter 🛵 →

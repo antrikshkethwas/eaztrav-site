@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Mahakaleshwar Temple Guide: Darshan Timings, Bhasma Aarti Booking & Tips | EazTrav",
   description:
     "Mahakaleshwar temple timings, Bhasma Aarti online booking, dress code, what to carry and how to reach Mahakal in Ujjain. Updated guide with local tips.",
-  alternates: { canonical: "https://www.eaztrav.com/Ujjain/guide/mahakaleshwar-temple" },
+  alternates: { canonical: "https://www.eaztrav.com/ujjain/guide/mahakaleshwar-temple" },
 };
 
 const faqs: Faq[] = [
@@ -120,7 +120,7 @@ export default function MahakaleshwarGuide() {
       <p>
         The lanes around the temple get very crowded, and cars are often stopped at barricades some distance away. A
         scooter is the easiest way to get close, park and move on to the next temple. See our{" "}
-        <Link href="/Ujjain/guide/getting-around">guide to getting around Ujjain</Link> for fares and parking tips.
+        <Link href="/ujjain/guide/getting-around">guide to getting around Ujjain</Link> for fares and parking tips.
       </p>
 
       <h2>Places to visit near Mahakal</h2>
@@ -128,7 +128,7 @@ export default function MahakaleshwarGuide() {
         Harsiddhi Mata temple and Bade Ganesh ka Mandir are a short walk away, and Ram Ghat on the Shipra river is
         about a kilometre from the temple. Kal Bhairav, Mangalnath and Sandipani Ashram are a few kilometres out and
         are best done on a scooter. Our{" "}
-        <Link href="/Ujjain/guide/itinerary">1-day and 2-day Ujjain itinerary</Link> puts them in an easy order.
+        <Link href="/ujjain/guide/itinerary">1-day and 2-day Ujjain itinerary</Link> puts them in an easy order.
       </p>
     </GuidePage>
   );

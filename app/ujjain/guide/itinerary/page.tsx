@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Ujjain 1-Day & 2-Day Itinerary: Places to Visit by Scooter | EazTrav",
   description:
     "Plan your Ujjain trip with a simple 1-day and 2-day itinerary covering Mahakal, Kal Bhairav, Harsiddhi, Ram Ghat, Mangalnath, Sandipani Ashram and more, with local travel tips.",
-  alternates: { canonical: "https://www.eaztrav.com/Ujjain/guide/itinerary" },
+  alternates: { canonical: "https://www.eaztrav.com/ujjain/guide/itinerary" },
 };
 
 const faqs: Faq[] = [
@@ -47,7 +47,7 @@ export default function ItineraryGuide() {
       <h2>Ujjain in 1 day</h2>
       <h3>Morning: Mahakal and the old city</h3>
       <ul>
-        <li><strong>6:00 AM, Mahakaleshwar temple.</strong> Go early for a shorter queue. If you have a Bhasma Aarti pass, you will already be inside from about 2 AM. See our <Link href="/Ujjain/guide/mahakaleshwar-temple">Mahakal darshan guide</Link>.</li>
+        <li><strong>6:00 AM, Mahakaleshwar temple.</strong> Go early for a shorter queue. If you have a Bhasma Aarti pass, you will already be inside from about 2 AM. See our <Link href="/ujjain/guide/mahakaleshwar-temple">Mahakal darshan guide</Link>.</li>
         <li><strong>8:30 AM, Mahakal Lok.</strong> Walk through the corridor right next to the temple.</li>
         <li><strong>9:30 AM, breakfast.</strong> Poha and jalebi from any stall near the temple is the classic Ujjain breakfast.</li>
         <li><strong>10:00 AM, Harsiddhi Mata temple and Bade Ganesh ka Mandir.</strong> Both are a short walk from Mahakal.</li>
@@ -98,7 +98,7 @@ export default function ItineraryGuide() {
         <li>Carry a small bag you can leave in a locker. Phones and bags are generally not allowed inside Mahakal.</li>
         <li>Avoid Mondays and festival days at Mahakal if you want a quick darshan.</li>
         <li>Keep some small change for parking, prasad and shoe stands.</li>
-        <li>Check our <Link href="/Ujjain/guide/getting-around">getting around Ujjain guide</Link> for auto fares and distances.</li>
+        <li>Check our <Link href="/ujjain/guide/getting-around">getting around Ujjain guide</Link> for auto fares and distances.</li>
       </ul>
     </GuidePage>
   );
