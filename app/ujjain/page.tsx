@@ -9,7 +9,7 @@ import { services } from "./services";
 
 export const metadata: Metadata = {
   title: "Scooter Rental, Self-Drive Car & Cab Service in Ujjain | EazTrav",
-  description: "Rent a scooter, hire a self-drive car or book a cab with driver in Ujjain. Near Freeganj and Mahakaleshwar Temple. Book instantly via WhatsApp or call.",
+  description: "Rent a scooter, hire a self-drive car, book a cab with driver or a tour to Omkareshwar, Maheshwar and Mandu from Ujjain. Near Freeganj and Mahakaleshwar Temple. Book instantly via WhatsApp or call.",
   alternates: { canonical: "https://www.eaztrav.com/ujjain" },
 };
 
@@ -21,12 +21,12 @@ export default function UjjainPage() {
       <div className="text-center px-6 pt-8 pb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">📍Ujjain</h1>
         <p className="text-sm text-gray-600 max-w-md mx-auto mt-2">
-          Scooters, a self-drive car and a cab with driver. Pick what you need.
+          Tour packages, scooters, a self-drive car and cabs with driver. Pick what you need.
         </p>
       </div>
 
       {/* Service cards */}
-      <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto px-4 sm:px-6">
         {services.map((s) => (
           <Link
             key={s.href}

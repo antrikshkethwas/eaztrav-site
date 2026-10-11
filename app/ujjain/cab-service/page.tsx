@@ -5,7 +5,7 @@ import CabServiceContent from "./CabServiceContent";
 
 export const metadata: Metadata = {
   title: "Cab Service in Ujjain | Taxi with Driver | EazTrav",
-  description: "Book a cab in Ujjain with driver for Mahakal darshan, local sightseeing, Indore airport transfers and Omkareshwar trips. Book instantly via WhatsApp or call.",
+  description: "Book a cab in Ujjain with driver: sedan, Ertiga, Innova Crysta, Tempo Traveller or mini bus. For Mahakal darshan, local sightseeing, Indore airport transfers and Omkareshwar trips. Book via WhatsApp or call.",
   alternates: { canonical: "https://www.eaztrav.com/ujjain/cab-service" },
 };
 

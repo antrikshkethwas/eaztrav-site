@@ -18,10 +18,8 @@ export default function ContactPage() {
 
 
       <div className="max-w-lg mx-auto px-6 py-16 text-center">
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">Book a scooter on call</h1>
-        <p className="text-gray-600 mb-10">
-          For the quickest response, just give us a call or drop a message on WhatsApp.
-        </p>
+
+
 
         {/* Call buttons — primary action */}
         <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -41,14 +39,6 @@ export default function ContactPage() {
         </div>
 
         {/* Explore scooters CTA */}
-      <div className="max-w-lg mx-auto px-6 py-16 text-center">
-        <a
-            href="/ujjain/scooter-rental"
-            className="flex-1 bg-[#173F73] hover:bg-opacity-90 text-white font-semibold py-4 rounded-full transition text-lg"
-          >
-            Or select a scooter 🛵 →
-          </a>    
-      </div>
 
 
         {/* Secondary info */}
@@ -56,8 +46,8 @@ export default function ContactPage() {
           <div>
             <h1 className="text-xl font-semibold text-gray-900 mb-3">Write us a feedback</h1>
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-1">Email</p>
-            <a href="mailto:easy.stay.ujjain@gmail.com" className="text-gray-900 hover:text-yellow-600 transition">
-              easy.stay.ujjain@gmail.com
+            <a href="mailto:eazz.trav@gmail.com" className="text-gray-900 hover:text-yellow-600 transition">
+              eazz.trav@gmail.com
             </a>
           </div>
           <div>

@@ -5,7 +5,14 @@ import { guides } from "./guide/GuidePage";
 // The services offered in Ujjain. The city page (/ujjain) and the
 // "More in Ujjain" links on each service page are both built from this list,
 // so adding a service here makes it show up everywhere.
+// The order here is the order they appear on the site.
 export const services = [
+  {
+    href: "/ujjain/trips",
+    icon: "🗺️",
+    title: "Trips & tour packages",
+    blurb: "Omkareshwar, Maheshwar, Mandu, Pachmarhi and more. Sedan to mini bus.",
+  },
   {
     href: "/ujjain/scooter-rental",
     icon: "🛵",
@@ -26,13 +33,23 @@ export const services = [
   },
 ];
 
-// Small "Home › Ujjain › This page" trail at the top of a service page
-export function Breadcrumb({ current }: { current: string }) {
+// An in-between page in the trail, e.g. { name: "Trips", path: "/ujjain/trips" }
+type Crumb = { name: string; path: string };
+
+// Small "Home › Ujjain › This page" trail at the top of a service page.
+// Pass `parent` for pages one level deeper (Home › Ujjain › Trips › This page).
+export function Breadcrumb({ current, parent }: { current: string; parent?: Crumb }) {
   return (
     <p className="text-xs text-gray-500 px-4 sm:px-6 pt-3 max-w-3xl mx-auto">
       <Link href="/" className="hover:underline">Home</Link>
       {" › "}
       <Link href="/ujjain" className="hover:underline">Ujjain</Link>
+      {parent && (
+        <>
+          {" › "}
+          <Link href={parent.path} className="hover:underline">{parent.name}</Link>
+        </>
+      )}
       {" › "}
       <span>{current}</span>
     </p>
@@ -40,15 +57,17 @@ export function Breadcrumb({ current }: { current: string }) {
 }
 
 // Tells Google where this page sits in the site (Home › Ujjain › This page)
-export function BreadcrumbJsonLd({ name, path }: { name: string; path: string }) {
+export function BreadcrumbJsonLd({ name, path, parent }: { name: string; path: string; parent?: Crumb }) {
+  const trail = [
+    { name: "Home", item: SITE_URL },
+    { name: "Ujjain", item: `${SITE_URL}/ujjain` },
+    ...(parent ? [{ name: parent.name, item: `${SITE_URL}${parent.path}` }] : []),
+    { name, item: `${SITE_URL}${path}` },
+  ];
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Ujjain", item: `${SITE_URL}/ujjain` },
-      { "@type": "ListItem", position: 3, name, item: `${SITE_URL}${path}` },
-    ],
+    itemListElement: trail.map((t, i) => ({ "@type": "ListItem", position: i + 1, ...t })),
   };
   return (
     <script

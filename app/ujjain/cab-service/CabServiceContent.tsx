@@ -1,41 +1,49 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useRef, useState } from "react";
+import Link from "next/link";
 import { CALL_NUMBER, dateOptions, timeOptions, whatsappLink } from "../../lib/booking";
+import AdvancePayment from "../../components/AdvancePayment";
+import VehiclePicture from "../../components/VehiclePicture";
+import { fromPrice, getTrip, groupIcons, rupees, vehicleGroups, vehicles, type Trip } from "../trips/trips";
 
 // ============================================================
-// ✏️ YOUR CAB DETAILS — edit here
+// ✏️ CAB PAGE SETTINGS — edit here
 // ============================================================
-const cab = {
-  name: "Maruti Suzuki Dzire", // the car used as the cab
-  passengers: 4, // passengers, not counting the driver
-  ac: true,
-  img: "/images/desire.png",
-};
+// The vehicles and their prices come from the trip price list in
+// ../trips/trips.ts, so there is nothing to change here when prices change.
 
-// Trips shown on the page. Put a fare in `fare` (e.g. "₹1500") to show it;
-// while it is empty the page shows "Ask for fare".
-const routes = [
-  { name: "Ujjain local sightseeing", detail: "Mahakal, Kal Bhairav, Harsiddhi, Ram Ghat and more", fare: "" },
-  { name: "Ujjain ⇄ Indore airport", detail: "Pickup or drop, about 55 km", fare: "" },
-  { name: "Ujjain ⇄ Omkareshwar", detail: "Day trip, about 140 km each way", fare: "" },
-  { name: "Railway station pickup", detail: "Ujjain Junction to your hotel or the temple", fare: "" },
-];
+// Trips shown under "Popular cab trips" (trip addresses from trips.ts)
+const popularTrips = [
+  "ujjain-local-sightseeing",
+  "ujjain-to-indore-airport",
+  "ujjain-to-omkareshwar",
+  "ujjain-omkareshwar-maheshwar-mandu",
+]
+  .map(getTrip)
+  .filter((t): t is Trip => Boolean(t));
+
+// The two prices shown on each vehicle card, taken from these trips
+const localTrip = getTrip("ujjain-local-sightseeing");
+const airportTrip = getTrip("ujjain-to-indore-airport");
 // ============================================================
 
 const faqs = [
   {
     q: "How do I book a cab in Ujjain with EazTrav?",
-    a: "Enter your pickup and drop above, pick a date and time, and tap 'Book on WhatsApp'. You can also call us directly. We'll confirm the fare and the booking.",
+    a: "Choose a vehicle, enter your pickup and drop, pick a date and time, and tap 'Book on WhatsApp'. You can also call us directly. We'll confirm the fare and the booking.",
   },
   {
     q: "How much does a cab in Ujjain cost?",
-    a: "The fare depends on the distance and how long you need the cab. Send us your trip on WhatsApp and we'll tell you the fare before you book.",
+    a: "A full day of Ujjain local sightseeing starts from ₹2,900 in a sedan and an Indore airport transfer from ₹1,560. See our trips page for every route and vehicle, or send us your trip on WhatsApp for a quote.",
+  },
+  {
+    q: "Which vehicles can I book?",
+    a: "Sedan, Maruti Ertiga, Kia Carens, Toyota Innova and Innova Crysta, Chevrolet Tavera, Force Toofan, Tempo Travellers from 12 to 25 seats and a mini bus for groups of up to 25. All vehicles are subject to availability.",
   },
   {
     q: "Can I book a cab from Ujjain to Indore airport or Omkareshwar?",
-    a: "Yes. We do Indore airport pickups and drops, and day trips to Omkareshwar.",
+    a: "Yes. We do Indore airport pickups and drops, and trips to Omkareshwar, Maheshwar, Mandu and more.",
   },
   {
     q: "Does the cab come with a driver?",
@@ -43,45 +51,64 @@ const faqs = [
   },
 ];
 
-function CabBookingCard() {
+function CabBookingCard({
+  vehicleName,
+  setVehicleName,
+}: {
+  vehicleName: string;
+  setVehicleName: (name: string) => void;
+}) {
   const [pickup, setPickup] = useState("");
   const [drop, setDrop] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
+  const selected = vehicles.find((v) => v.name === vehicleName);
+
   const handleBook = () => {
+    const vehicleText = vehicleName ? `(${vehicleName})` : "";
     const fromText = pickup ? `from ${pickup}` : "";
     const toText = drop ? `to ${drop}` : "";
     const dateText = date ? `on ${date}` : "";
     const timeText = time ? `at ${time}` : "";
-    const message = `Hi, I want to book a cab in Ujjain ${fromText} ${toText} ${dateText} ${timeText}`;
+    const message = `Hi, I want to book a cab ${vehicleText} in Ujjain ${fromText} ${toText} ${dateText} ${timeText}`;
     window.open(whatsappLink(message), "_blank");
   };
 
   return (
     <div className="bg-white border border-gray-100 rounded-3xl p-6 text-center shadow-sm hover:shadow-xl transition duration-300">
-      <div className="bg-white border border-gray-100 rounded-2xl p-4 mb-5">
-        <Image
-          src={cab.img}
-          alt={`${cab.name} cab with driver in Ujjain`}
-          width={320}
-          height={250}
-          className="mx-auto object-contain"
-        />
-      </div>
+      {selected && (
+        <div className="bg-white border border-gray-100 rounded-2xl p-4 mb-5">
+          <VehiclePicture vehicle={selected} size="large" />
+        </div>
+      )}
 
       <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold px-3 py-1 rounded-full mb-3">
         Cab with driver
       </span>
 
-      <h3 className="text-xl font-bold text-gray-900">{cab.name}</h3>
+      <h2 className="text-xl font-bold text-gray-900">{selected ? selected.name : "Book a cab"}</h2>
 
       {/* Quick specs */}
       <div className="flex flex-wrap justify-center gap-2 mt-3 mb-6 text-xs text-gray-600">
-        <span className="bg-gray-100 px-3 py-1 rounded-full">👥 {cab.passengers} passengers</span>
-        {cab.ac && <span className="bg-gray-100 px-3 py-1 rounded-full">❄️ AC</span>}
+        {selected && <span className="bg-gray-100 px-3 py-1 rounded-full">👥 {selected.seats}</span>}
         <span className="bg-gray-100 px-3 py-1 rounded-full">🧑‍✈️ Driver included</span>
       </div>
+
+      {/* Vehicle */}
+      <select
+        value={vehicleName}
+        onChange={(e) => setVehicleName(e.target.value)}
+        aria-label="Vehicle"
+        className="w-full border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 bg-white mb-3"
+      >
+        <option value="">Select vehicle</option>
+        {vehicles.map((v) => (
+          <option key={v.name} value={v.name}>
+            {v.name} ({v.seats})
+          </option>
+        ))}
+      </select>
 
       {/* Pickup and drop */}
       <div className="flex flex-col gap-3 mb-3">
@@ -108,6 +135,7 @@ function CabBookingCard() {
         <select
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          aria-label="Date"
           className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 bg-white"
         >
           <option value="">Select date</option>
@@ -121,6 +149,7 @@ function CabBookingCard() {
         <select
           value={time}
           onChange={(e) => setTime(e.target.value)}
+          aria-label="Time"
           className="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm text-gray-700 bg-white"
         >
           <option value="">Select time</option>
@@ -152,32 +181,112 @@ function CabBookingCard() {
 }
 
 export default function CabServiceContent() {
+  const [vehicleName, setVehicleName] = useState("");
+  const bookingRef = useRef<HTMLDivElement>(null);
+
+  // "Book this vehicle" on a vehicle card: pick it in the form and scroll up to it
+  const chooseVehicle = (name: string) => {
+    setVehicleName(name);
+    bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <>
       <div className="text-center mb-2 px-6 py-1">
         <h1 className="text-xl font-bold text-gray-900">📍Cab Service in Ujjain</h1>
         <p className="text-xs text-gray-600 max-w-md mx-auto">
-          AC cab with driver for temple visits, airport transfers and day trips.
+          Cab with driver for temple visits, airport transfers and day trips. Sedan, SUV, Tempo Traveller or mini bus.
         </p>
       </div>
 
-      <div className="max-w-md mx-auto px-4 mt-4">
-        <CabBookingCard />
+      <div ref={bookingRef} className="max-w-md mx-auto px-4 mt-4 scroll-mt-20">
+        <CabBookingCard vehicleName={vehicleName} setVehicleName={setVehicleName} />
       </div>
 
-      {/* Popular routes */}
+      {/* Advance payment (hidden while the Razorpay button ID in lib/booking.ts is empty) */}
+      <div className="max-w-md mx-auto px-4 mt-6">
+        <AdvancePayment />
+      </div>
+
+      {/* All vehicles, grouped */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-12">
+        <h2 className="text-lg font-bold text-gray-900 text-center">Our vehicles</h2>
+        <p className="text-xs text-gray-500 text-center mt-1">
+          Starting fares. &quot;4+1&quot; means 4 passengers plus the driver. All vehicles are subject to availability.
+        </p>
+
+        {vehicleGroups.map((group) => {
+          const groupVehicles = vehicles
+            .map((vehicle, i) => ({ vehicle, i }))
+            .filter(({ vehicle }) => vehicle.group === group);
+          return (
+            <div key={group} className="mt-6">
+              <h3 className="text-base font-semibold text-gray-900 mb-3">
+                {groupIcons[group]} {group}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {groupVehicles.map(({ vehicle, i }) => (
+                  <div
+                    key={vehicle.name}
+                    className={`bg-white border rounded-2xl p-4 shadow-sm text-center transition ${
+                      vehicle.name === vehicleName ? "border-[#173F73] ring-2 ring-[#173F73]/20" : "border-gray-100"
+                    }`}
+                  >
+                    <VehiclePicture vehicle={vehicle} size="small" />
+                    <p className="font-semibold text-gray-900 mt-2">{vehicle.name}</p>
+                    <p className="text-xs text-gray-500">👥 {vehicle.seats}</p>
+
+                    <div className="flex justify-center gap-4 mt-3 text-left">
+                      {localTrip && (
+                        <div>
+                          <p className="text-sm font-bold text-gray-900">{rupees(localTrip.prices[i])}</p>
+                          <p className="text-[11px] text-gray-500">Ujjain local, full day</p>
+                        </div>
+                      )}
+                      {airportTrip && (
+                        <div>
+                          <p className="text-sm font-bold text-gray-900">{rupees(airportTrip.prices[i])}</p>
+                          <p className="text-[11px] text-gray-500">Indore airport, one way</p>
+                        </div>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={() => chooseVehicle(vehicle.name)}
+                      className="mt-4 w-full bg-[#173F73] text-white text-sm font-semibold py-2 rounded-full hover:opacity-90 transition"
+                    >
+                      Book this vehicle
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* Popular trips, linking to their trip pages */}
       <section className="max-w-3xl mx-auto px-6 mt-12">
         <h2 className="text-lg font-bold text-gray-900 text-center mb-4">Popular cab trips from Ujjain</h2>
         <div className="grid sm:grid-cols-2 gap-3">
-          {routes.map((route) => (
-            <div key={route.name} className="flex items-center justify-between gap-3 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+          {popularTrips.map((trip) => (
+            <Link
+              key={trip.slug}
+              href={`/ujjain/trips/${trip.slug}`}
+              className="flex items-center justify-between gap-3 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:shadow-md transition"
+            >
               <div>
-                <p className="font-semibold text-gray-900">{route.name}</p>
-                <p className="text-xs text-gray-500 mt-1">{route.detail}</p>
+                <p className="font-semibold text-gray-900">{trip.name}</p>
+                <p className="text-xs text-gray-500 mt-1">{trip.stops.join(" → ")}</p>
               </div>
-              <p className="text-sm font-bold text-gray-900 whitespace-nowrap">{route.fare || "Ask for fare"}</p>
-            </div>
+              <p className="text-sm font-bold text-gray-900 whitespace-nowrap">from {rupees(fromPrice(trip))}</p>
+            </Link>
           ))}
+        </div>
+        <div className="text-center mt-4">
+          <Link href="/ujjain/trips" className="text-sm text-[#173F73] font-semibold hover:underline">
+            See all trips &amp; prices →
+          </Link>
         </div>
       </section>
 
@@ -197,7 +306,7 @@ export default function CabServiceContent() {
       {/* SEO content */}
       <div className="max-w-2xl mx-auto px-6 py-12 text-sm text-gray-600 leading-relaxed text-center">
         <p>
-          Need a cab or taxi in Ujjain? EazTrav offers an AC cab with driver from Freeganj for Mahakaleshwar darshan, Ujjain local sightseeing, Indore airport pickup and drop, and Omkareshwar day trips. Tell us your pickup, drop and time on WhatsApp and we&apos;ll confirm the fare before you book.
+          Need a cab or taxi in Ujjain? EazTrav offers cabs with driver from Freeganj for Mahakaleshwar darshan, Ujjain local sightseeing, Indore airport pickup and drop, and trips to Omkareshwar, Maheshwar and Mandu. Choose a sedan, Ertiga, Kia Carens, Innova Crysta, Tempo Traveller or mini bus for your group, and book on WhatsApp or call.
         </p>
       </div>
     </>

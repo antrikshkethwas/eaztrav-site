@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { trips } from './ujjain/trips/trips'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -7,6 +8,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
+    },
+    {
+      url: 'https://www.eaztrav.com/about',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
     // Ujjain city page and its service pages
     {
@@ -33,6 +40,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    // Trips list + one page per trip (taken from the trip price list)
+    {
+      url: 'https://www.eaztrav.com/ujjain/trips',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...trips.map((trip) => ({
+      url: `https://www.eaztrav.com/ujjain/trips/${trip.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
     // Ujjain travel guide pages
     {
       url: 'https://www.eaztrav.com/ujjain/guide/mahakaleshwar-temple',

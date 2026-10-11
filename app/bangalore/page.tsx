@@ -7,7 +7,7 @@ export default function Bangalore() {
 {/* Contact Bar */}
       <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
           <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
-          <span>✉️ easy.stay.ujjain@gmail.com</span>
+          <span>✉️ eazz.trav@gmail.com</span>
           <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
           <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
         </div>

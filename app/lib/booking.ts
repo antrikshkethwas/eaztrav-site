@@ -5,6 +5,36 @@ export const SITE_URL = "https://www.eaztrav.com";
 export const WHATSAPP_NUMBER = "919752087904"; // WhatsApp number, country code + number, no + or spaces
 export const CALL_NUMBER = "+919752087904"; // Call number, with + and country code
 
+// Advance payment taken on every booking, through a Razorpay Payment Button.
+// The button ID starts with "pl_" (Razorpay dashboard → Payment Button).
+// The amount itself is set in Razorpay; ADVANCE_AMOUNT is only the text shown
+// on the site, so keep the two the same. Empty button ID = payment box hidden.
+export const RAZORPAY_BUTTON_ID = "pl_Tl8emWtasNWFXv";
+export const ADVANCE_AMOUNT = "₹250";
+
+// Razorpay Payment Page "EazTrav Cab Booking" (₹250 advance), used by the
+// trip pages. Unlike the button above, it receives the booking details:
+// we open it with Trip, vehicle, Date of travel and pickup time already
+// filled in, so every payment in the Razorpay dashboard shows what was booked.
+export const RAZORPAY_PAYMENT_PAGE = "https://pages.razorpay.com/pl_TmilCW97hJe3er/view";
+
+// Builds the Payment Page link with the booking details filled in.
+// The names (trip, vehicle, date_of_travel, pickup_time) must match the field
+// labels on the Razorpay page: lowercase, spaces replaced by underscores.
+export function paymentPageLink(details: { trip: string; vehicle: string; date: string; time: string }) {
+  const params = {
+    trip: details.trip,
+    vehicle: details.vehicle,
+    date_of_travel: details.date,
+    pickup_time: details.time,
+  };
+  // encodeURIComponent writes spaces as %20, which Razorpay reads correctly
+  const query = Object.entries(params)
+    .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+    .join("&");
+  return `${RAZORPAY_PAYMENT_PAGE}?${query}`;
+}
+
 // Builds a WhatsApp link that opens a chat with the message already typed
 export function whatsappLink(message: string) {
   const text = message.replace(/\s+/g, " ").trim();
