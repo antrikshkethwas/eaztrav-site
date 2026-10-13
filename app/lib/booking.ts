@@ -5,16 +5,13 @@ export const SITE_URL = "https://www.eaztrav.com";
 export const WHATSAPP_NUMBER = "919752087904"; // WhatsApp number, country code + number, no + or spaces
 export const CALL_NUMBER = "+919752087904"; // Call number, with + and country code
 
-// Advance payment taken on every booking, through a Razorpay Payment Button.
-// The button ID starts with "pl_" (Razorpay dashboard → Payment Button).
-// The amount itself is set in Razorpay; ADVANCE_AMOUNT is only the text shown
-// on the site, so keep the two the same. Empty button ID = payment box hidden.
-export const RAZORPAY_BUTTON_ID = "pl_Tl8emWtasNWFXv";
-export const ADVANCE_AMOUNT = "₹250";
+// Advance payment taken on every booking (trip pages and the cab page).
+// The amount charged is set on the Razorpay Payment Page; ADVANCE_AMOUNT is
+// only the text shown on the site, so keep the two the same.
+export const ADVANCE_AMOUNT = "₹349";
 
-// Razorpay Payment Page "EazTrav Cab Booking" (₹250 advance), used by the
-// trip pages. Unlike the button above, it receives the booking details:
-// we open it with Trip, vehicle, Date of travel and pickup time already
+// Razorpay Payment Page "EazTrav Cab Booking" (₹349 advance).
+// We open it with Trip, vehicle, Date of travel and pickup time already
 // filled in, so every payment in the Razorpay dashboard shows what was booked.
 export const RAZORPAY_PAYMENT_PAGE = "https://pages.razorpay.com/pl_TmilCW97hJe3er/view";
 

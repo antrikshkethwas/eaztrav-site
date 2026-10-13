@@ -22,8 +22,8 @@ export async function generateMetadata({ params }: PageProps<"/ujjain/trips/[slu
   const trip = getTrip(slug);
   if (!trip) return {};
   return {
-    title: `${trip.name} | Taxi Fare from ${rupees(fromPrice(trip))} | EazTrav`,
-    description: `${trip.name} taxi with driver, ${trip.oneWay ? "one way" : "round trip"}. Sedan from ${rupees(fromPrice(trip))}, plus Ertiga, Innova Crysta, Tempo Traveller and mini bus. ${trip.description}`,
+    title: `${trip.name} | Sedan Taxi ${rupees(fromPrice(trip))} | EazTrav`,
+    description: `${trip.name} taxi with driver, ${trip.oneWay ? "one way" : "round trip"}. Sedan ${rupees(fromPrice(trip))}, plus Ertiga, Innova Crysta, Tempo Traveller and mini bus at fixed fares. ${trip.description}`,
     alternates: { canonical: `https://www.eaztrav.com/ujjain/trips/${trip.slug}` },
   };
 }
@@ -34,7 +34,7 @@ function tripFaqs(trip: Trip) {
   const faqs = [
     {
       q: `How much is the taxi fare for ${trip.name}?`,
-      a: `Fares start from ${rupees(trip.prices[0])} for a sedan (4 passengers) and ${rupees(trip.prices[crysta])} for an Innova Crysta. These are ${tripType} starting fares. The final price can go up if you add stops or extra kilometres.`,
+      a: `The fare is ${rupees(trip.prices[0])} for a sedan (4 passengers) and ${rupees(trip.prices[crysta])} for an Innova Crysta. These are fixed ${tripType} fares for this route. Extra stops or kilometres beyond the route are charged separately.`,
     },
     {
       q: "Which vehicles can I book?",
@@ -73,7 +73,7 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
       <div className="text-center px-6 pt-4">
         <h1 className="text-2xl font-bold text-gray-900">📍{trip.name}</h1>
         <p className="text-sm text-gray-600 mt-2">
-          Taxi with driver · {trip.oneWay ? "One way" : "Round trip"} · from{" "}
+          Taxi with driver · {trip.oneWay ? "One way" : "Round trip"} · Sedan{" "}
           <span className="font-bold text-gray-900">{rupees(fromPrice(trip))}</span>
         </p>
         <p className="text-sm text-[#173F73] font-semibold mt-3">{trip.stops.join(" → ")}</p>
@@ -94,7 +94,7 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
       <section className="max-w-2xl mx-auto px-4 sm:px-6 mt-12">
         <h2 className="text-lg font-bold text-gray-900 text-center">{trip.name} fares by vehicle</h2>
         <p className="text-xs text-gray-500 text-center mt-1 mb-4">
-          {trip.oneWay ? "One-way" : "Round-trip"} starting fares. Extra stops or kilometres may cost more. Subject to availability.
+          Fixed {trip.oneWay ? "one-way" : "round-trip"} fares. Extra stops or kilometres beyond the route are charged separately. Subject to availability.
         </p>
         <div className="space-y-4">
           {vehicleGroups.map((group) => {
@@ -110,7 +110,7 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
                       <p className="text-sm font-medium text-gray-900">{vehicle.name}</p>
                       <p className="text-xs text-gray-500">👥 {vehicle.seats}</p>
                     </div>
-                    <p className="text-sm font-bold text-gray-900 whitespace-nowrap">{rupees(price)} onwards</p>
+                    <p className="text-sm font-bold text-gray-900 whitespace-nowrap">{rupees(price)}</p>
                   </div>
                 ))}
               </div>
@@ -148,7 +148,10 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
                   <p className="font-semibold text-gray-900">{t.name}</p>
                   <p className="text-xs text-gray-500 mt-1">{t.stops.join(" → ")}</p>
                 </div>
-                <p className="text-sm font-bold text-gray-900 whitespace-nowrap">from {rupees(fromPrice(t))}</p>
+                <div className="text-right whitespace-nowrap">
+                  <p className="text-sm font-bold text-gray-900">{rupees(fromPrice(t))}</p>
+                  <p className="text-[11px] text-gray-500">Sedan</p>
+                </div>
               </Link>
             ))}
           </div>

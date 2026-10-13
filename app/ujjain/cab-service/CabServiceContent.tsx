@@ -2,8 +2,14 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { CALL_NUMBER, dateOptions, timeOptions, whatsappLink } from "../../lib/booking";
-import AdvancePayment from "../../components/AdvancePayment";
+import {
+  ADVANCE_AMOUNT,
+  CALL_NUMBER,
+  dateOptions,
+  paymentPageLink,
+  timeOptions,
+  whatsappLink,
+} from "../../lib/booking";
 import VehiclePicture from "../../components/VehiclePicture";
 import { fromPrice, getTrip, groupIcons, rupees, vehicleGroups, vehicles, type Trip } from "../trips/trips";
 
@@ -31,11 +37,11 @@ const airportTrip = getTrip("ujjain-to-indore-airport");
 const faqs = [
   {
     q: "How do I book a cab in Ujjain with EazTrav?",
-    a: "Choose a vehicle, enter your pickup and drop, pick a date and time, and tap 'Book on WhatsApp'. You can also call us directly. We'll confirm the fare and the booking.",
+    a: `Choose a vehicle, enter your pickup and drop, pick a date and time, and pay the ${ADVANCE_AMOUNT} advance online to book. We'll confirm the fare and your booking. If you have questions first, send us your trip details on WhatsApp or call us.`,
   },
   {
     q: "How much does a cab in Ujjain cost?",
-    a: "A full day of Ujjain local sightseeing starts from ₹2,900 in a sedan and an Indore airport transfer from ₹1,560. See our trips page for every route and vehicle, or send us your trip on WhatsApp for a quote.",
+    a: "A full day of Ujjain local sightseeing is ₹2,900 in a sedan and an Indore airport transfer is ₹1,560. See our trips page for every route and vehicle, or send us your trip on WhatsApp for a quote.",
   },
   {
     q: "Which vehicles can I book?",
@@ -62,8 +68,20 @@ function CabBookingCard({
   const [drop, setDrop] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [error, setError] = useState("");
 
   const selected = vehicles.find((v) => v.name === vehicleName);
+
+  // Opens the Razorpay Payment Page with the cab booking details filled in
+  const handlePay = () => {
+    if (!vehicleName || !pickup || !drop || !date || !time) {
+      setError("Please choose a vehicle and fill in pickup, drop, date and time first.");
+      return;
+    }
+    setError("");
+    const link = paymentPageLink({ trip: `Cab: ${pickup} to ${drop}`, vehicle: vehicleName, date, time });
+    window.open(link, "_blank");
+  };
 
   const handleBook = () => {
     const vehicleText = vehicleName ? `(${vehicleName})` : "";
@@ -161,21 +179,31 @@ function CabBookingCard({
         </select>
       </div>
 
-      {/* Action buttons */}
-      <div className="flex gap-3">
+      {/* Main action: pay the advance on the Razorpay Payment Page */}
+      <div className="border-t border-gray-100 pt-4">
         <button
-          onClick={handleBook}
-          className="flex-1 bg-green-600 text-white font-semibold py-3 rounded-full hover:bg-green-700 transition"
+          onClick={handlePay}
+          className="w-full bg-[#173F73] text-white font-semibold py-3 rounded-full hover:opacity-90 transition"
         >
-          Book on WhatsApp
+          Pay {ADVANCE_AMOUNT} advance to book
         </button>
-        <a
-          href={`tel:${CALL_NUMBER}`}
-          className="flex-1 bg-[#173F73] text-white font-semibold py-3 rounded-full hover:opacity-90 transition text-center"
-        >
-          Book on call
-        </a>
+        {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
+        <p className="text-xs text-gray-500 mt-2">
+          Secure payment by Razorpay · UPI, card or net banking. Your trip details are filled in for you.
+        </p>
       </div>
+
+      {/* Secondary options, kept small */}
+      <p className="text-xs text-gray-500 mt-4">
+        Questions, or already paid?{" "}
+        <button onClick={handleBook} className="text-green-700 font-semibold underline">
+          Send trip details on WhatsApp
+        </button>{" "}
+        or{" "}
+        <a href={`tel:${CALL_NUMBER}`} className="text-[#173F73] font-semibold underline">
+          call us
+        </a>
+      </p>
     </div>
   );
 }
@@ -203,16 +231,12 @@ export default function CabServiceContent() {
         <CabBookingCard vehicleName={vehicleName} setVehicleName={setVehicleName} />
       </div>
 
-      {/* Advance payment (hidden while the Razorpay button ID in lib/booking.ts is empty) */}
-      <div className="max-w-md mx-auto px-4 mt-6">
-        <AdvancePayment />
-      </div>
 
       {/* All vehicles, grouped */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 mt-12">
         <h2 className="text-lg font-bold text-gray-900 text-center">Our vehicles</h2>
         <p className="text-xs text-gray-500 text-center mt-1">
-          Starting fares. &quot;4+1&quot; means 4 passengers plus the driver. All vehicles are subject to availability.
+          Fixed fares. &quot;4+1&quot; means 4 passengers plus the driver. All vehicles are subject to availability.
         </p>
 
         {vehicleGroups.map((group) => {
@@ -279,7 +303,10 @@ export default function CabServiceContent() {
                 <p className="font-semibold text-gray-900">{trip.name}</p>
                 <p className="text-xs text-gray-500 mt-1">{trip.stops.join(" → ")}</p>
               </div>
-              <p className="text-sm font-bold text-gray-900 whitespace-nowrap">from {rupees(fromPrice(trip))}</p>
+              <div className="text-right whitespace-nowrap">
+                <p className="text-sm font-bold text-gray-900">{rupees(fromPrice(trip))}</p>
+                <p className="text-[11px] text-gray-500">Sedan</p>
+              </div>
             </Link>
           ))}
         </div>

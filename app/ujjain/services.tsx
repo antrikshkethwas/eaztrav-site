@@ -17,7 +17,7 @@ export const services = [
     href: "/ujjain/scooter-rental",
     icon: "🛵",
     title: "Scooter rental",
-    blurb: "Activa 125 and Access 125. From ₹400 per day or ₹150 per hour.",
+    blurb: "Activa 125 and Access 125. ₹400 per day or ₹150 per hour.",
   },
   {
     href: "/ujjain/car-rental",

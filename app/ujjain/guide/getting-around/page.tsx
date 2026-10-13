@@ -20,7 +20,7 @@ const faqs: Faq[] = [
   },
   {
     q: "Is it easy to rent a scooter in Ujjain?",
-    a: "Yes. EazTrav rents Honda Activa 125 and Suzuki Access 125 scooters from ₹150 per hour or ₹400 per day. Book on WhatsApp or call 9752087904. You need a valid driving licence.",
+    a: "Yes. EazTrav rents Honda Activa 125 and Suzuki Access 125 scooters for ₹150 per hour or ₹400 per day. Book on WhatsApp or call 9752087904. You need a valid driving licence.",
   },
   {
     q: "Is a scooter or an auto better for Ujjain darshan?",

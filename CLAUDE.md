@@ -20,10 +20,11 @@
   - /ujjain/car-rental: self-drive car (Maruti Suzuki Dzire)
   - /ujjain/cab-service: cab with driver
   - /ujjain/trips: trips & tour packages (Omkareshwar, Maheshwar, Mandu, Pachmarhi, airport...), grouped; /ujjain/trips/<slug> is one page per trip with fares for 12 vehicle types
-    - All trips and prices live in app/ujjain/trips/trips.ts (the website copy of the owner's price sheet). Prices are "starting from", round trip unless oneWay; vehicles subject to availability.
+    - All trips and prices live in app/ujjain/trips/trips.ts (the website copy of the owner's price sheet). Prices are fixed fares per vehicle (shown without "from"/"onwards"; extra stops or km charged separately), round trip unless oneWay; vehicles subject to availability.
   - /ujjain/guide/...: travel guide articles
   - Each service page is split into page.tsx (server component, holds metadata) and a ...Content.tsx file (client component, holds interactivity), because metadata exports need a server component.
-- Phone numbers, date/time pickers and the Razorpay advance-payment button ID (₹250 advance on every booking) are shared from app/lib/booking.ts; the top bar is app/components/Navbar.tsx
+- Phone numbers, date/time pickers and the ₹349 advance payment are shared from app/lib/booking.ts; the top bar is app/components/Navbar.tsx
+  - Payment: trip pages and the cab page open the Razorpay Payment Page "EazTrav Cab Booking" (pl_TmilCW97hJe3er) pre-filled via URL with trip, vehicle, date_of_travel, pickup_time. These names must match the field labels on the Razorpay page. The amount is set in Razorpay; ADVANCE_AMOUNT is only display text, keep them equal.
 - next.config.ts allowedDevOrigins holds the PC's Wi-Fi IP so the dev site works on a phone; update it if the IP changes
 - proxy.ts redirects the old capitalised URLs (/Ujjain, /Bangalore) to the new ones. Old /Ujjain goes to /ujjain/scooter-rental. Don't remove it.
 - app/sitemap.ts lists homepage + Ujjain pages (Bangalore excluded until it goes live)
@@ -31,7 +32,8 @@
 ## SEO and marketing (already set up, don't break these)
 - Google Search Console verified; sitemap submitted at https://eaztrav.com/sitemap.xml
 - Google Business listing added
-- Google Ads tag (gtag.js) lives in layout.tsx and a campaign is running with real bookings
+- layout.tsx has the Google Analytics (GA4) gtag.js tag (G-3ZJXZHQ8HQ). There is no Google Ads (AW-) tag yet, so WhatsApp/call enquiries are not tracked in Google Ads
+- Google Ads campaign status, findings and to-do list live in the "Google Ads plan" file in the project root
 
 ## Future ideas
 - Possible Android app version (evaluating Capacitor/WebView vs PWA vs native)

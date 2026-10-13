@@ -6,7 +6,7 @@
 // updates the whole site.
 //
 // - `prices` follow the same column order as the `vehicles` list below.
-// - Prices are "starting from" fares (they can go up for extra stops or km).
+// - Prices are fixed fares for the route (extra stops or km are charged separately).
 // - To add a trip, copy one block, give it a new `slug` (the page address)
 //   and fill in its prices.
 
@@ -154,6 +154,15 @@ export const trips: Trip[] = [
     prices: [3250, 3750, 4250, 4250, 4500, 5250, 6500, 7250, 8000, 9750, 11250, 5000],
   },
   {
+    slug: "ujjain-to-baglamukhi-nalkheda",
+    name: "Ujjain to Baglamukhi Mata Mandir, Nalkheda",
+    stops: ["Ujjain", "Baglamukhi Mata Mandir, Nalkheda", "Ujjain"],
+    group: "local",
+    description:
+      "Visit the Maa Baglamukhi temple at Nalkheda in Agar Malwa district, known for its havan and puja, and come back to Ujjain.",
+    prices: [3250, 3750, 4250, 4250, 4500, 5250, 6500, 7250, 8000, 9750, 11250, 5000],
+  },
+  {
     slug: "ujjain-to-indore-airport",
     name: "Ujjain to Indore Airport Transfer",
     stops: ["Ujjain", "Indore Airport"],
@@ -181,7 +190,7 @@ export function rupees(amount: number) {
   return `₹${amount.toLocaleString("en-IN")}`;
 }
 
-// Lowest price for a trip, shown as "from ₹X"
+// Lowest price for a trip (the sedan fare), shown on trip cards as "₹X · Sedan"
 export function fromPrice(trip: Trip) {
   return Math.min(...trip.prices);
 }

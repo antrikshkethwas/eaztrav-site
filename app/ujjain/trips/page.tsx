@@ -10,7 +10,7 @@ import { fromPrice, rupees, tripGroups, trips } from "./trips";
 export const metadata: Metadata = {
   title: "Taxi Trips & Tour Packages from Ujjain | Omkareshwar, Maheshwar, Mandu | EazTrav",
   description:
-    "Taxi and tour packages from Ujjain to Omkareshwar, Maheshwar, Mandu, Dewas Tekri, Indore airport and Pachmarhi. Sedan, Innova, Tempo Traveller and mini bus. Prices from ₹1,560.",
+    "Taxi and tour packages from Ujjain to Omkareshwar, Maheshwar, Mandu, Dewas Tekri, Indore airport and Pachmarhi. Sedan, Innova, Tempo Traveller and mini bus at fixed fares.",
   alternates: { canonical: "https://www.eaztrav.com/ujjain/trips" },
 };
 
@@ -49,8 +49,8 @@ export default function TripsPage() {
                     <p className="text-xs text-gray-400 mt-1">{trip.oneWay ? "One way" : "Round trip"}</p>
                   </div>
                   <div className="text-right whitespace-nowrap">
-                    <p className="text-xs text-gray-500">from</p>
                     <p className="text-base font-bold text-gray-900">{rupees(fromPrice(trip))}</p>
+                    <p className="text-xs text-gray-500">Sedan</p>
                   </div>
                 </Link>
               ))}
@@ -60,7 +60,7 @@ export default function TripsPage() {
       })}
 
       <p className="max-w-3xl mx-auto px-6 mt-6 text-xs text-gray-500 text-center">
-        Prices are starting fares for a sedan and can go up for extra stops or kilometres. All vehicles are subject to availability.
+        Prices shown are fixed sedan fares. Open a trip to see the fare for every vehicle. Extra stops or kilometres beyond the route are charged separately. All vehicles are subject to availability.
       </p>
 
       {/* SEO content */}

@@ -26,7 +26,7 @@ const reasons = [
   {
     icon: "💰",
     title: "Clear prices up front",
-    text: "Every trip page lists the fare for each vehicle, so you know the starting price before you book.",
+    text: "Every trip page lists the fare for each vehicle, so you know the exact price before you book.",
   },
   {
     icon: "👨‍👩‍👧‍👦",

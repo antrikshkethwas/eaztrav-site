@@ -40,7 +40,7 @@ export function ScooterCta({ message = "Hi, I want to rent a scooter in Ujjain" 
     <div className="my-8 rounded-3xl bg-[#173F73] text-white p-6 shadow-sm">
       <p className="text-lg font-bold">🛵 Explore Ujjain on your own scooter</p>
       <p className="text-sm text-white/80 mt-1">
-        Activa 125 or Access 125 from ₹400/day or ₹150/hour. Book in a minute on WhatsApp.
+        Activa 125 or Access 125 for ₹400/day or ₹150/hour. Book in a minute on WhatsApp.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 mt-4">
         <a

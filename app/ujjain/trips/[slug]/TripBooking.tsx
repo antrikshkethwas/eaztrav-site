@@ -44,7 +44,7 @@ export default function TripBooking({
     setError("");
     const link = paymentPageLink({
       trip: tripName,
-      vehicle: `${vehicle} (${rupees(prices[selectedIndex])} onwards)`,
+      vehicle: `${vehicle} (${rupees(prices[selectedIndex])})`,
       date,
       time,
     });
@@ -52,7 +52,7 @@ export default function TripBooking({
   };
 
   const handleBook = () => {
-    const vehicleText = `in a ${vehicle} (${rupees(prices[selectedIndex])} onwards)`;
+    const vehicleText = `in a ${vehicle} (${rupees(prices[selectedIndex])})`;
     const dateText = date ? `on ${date}` : "";
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book the ${tripName} trip ${vehicleText} ${dateText} ${timeText}`;
@@ -75,7 +75,7 @@ export default function TripBooking({
             <span className="bg-gray-100 px-3 py-1 rounded-full">🧑‍✈️ Driver included</span>
           </div>
           <p className="mt-3 text-2xl font-bold text-gray-900">
-            {rupees(prices[selectedIndex])} <span className="text-sm font-normal text-gray-500">onwards</span>
+            {rupees(prices[selectedIndex])}
           </p>
         </div>
       )}
