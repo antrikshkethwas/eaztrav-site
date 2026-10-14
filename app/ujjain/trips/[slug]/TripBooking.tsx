@@ -137,20 +137,25 @@ export default function TripBooking({
           Pay {ADVANCE_AMOUNT} advance to book
         </button>
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
-        <p className="text-xs text-gray-500 mt-2">
+
+        {/* Second option: ask on WhatsApp (sends whatever details are filled in) */}
+        <button
+          onClick={handleBook}
+          className="w-full mt-3 bg-[#25D366] text-white font-semibold py-3 rounded-full hover:bg-[#1EBE5A] transition"
+        >
+          Enquire on WhatsApp
+        </button>
+
+        <p className="text-xs text-gray-500 mt-3">
           Secure payment by Razorpay · UPI, card or net banking. Your trip details are filled in for you.
         </p>
       </div>
 
-      {/* Secondary options, kept small */}
+      {/* Call, kept small */}
       <p className="text-xs text-gray-500 mt-4">
-        Questions, or already paid?{" "}
-        <button onClick={handleBook} className="text-green-700 font-semibold underline">
-          Send trip details on WhatsApp
-        </button>{" "}
-        or{" "}
+        Prefer to talk?{" "}
         <a href={`tel:${CALL_NUMBER}`} className="text-[#173F73] font-semibold underline">
-          call us
+          Call us
         </a>
       </p>
     </div>
