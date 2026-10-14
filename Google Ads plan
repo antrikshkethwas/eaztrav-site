@@ -1,0 +1,49 @@
+Google Ads plan (account 487-041-0160)
+======================================
+
+Campaign: eaztrav-cab-lead-search
+- Started Oct 13, 2026. Search campaign, Rs 100/day, bid strategy still learning.
+- Location: Ujjain only (as of Oct 13, 2026).
+- Ad groups (since Oct 13, 2026), all phrase match, one ad each written for that page:
+    - Omkareshwar            (17 kw) -> /ujjain/trips/ujjain-to-omkareshwar
+    - Omkareshwar Maheshwar  (12 kw) -> /ujjain/trips/ujjain-omkareshwar-maheshwar
+    - Indore Airport         (12 kw) -> /ujjain/trips/ujjain-to-indore-airport
+    - Ujjain Cab             (17 kw) -> /ujjain/cab-service
+    - Ad group 1 (old, PAUSED): the original 38 broad keywords incl. generic airport + "travel agency" ones.
+
+Done
+====
+- Oct 13, 2026: paused "ujjain travel agency" (broad match pulled in searches for competitor agencies: royal, citylink, gondekar travels etc. 7 of 9 clicks on day 1, no enquiries).
+- Oct 13, 2026: created the 4 ad groups above and paused Ad group 1. This retired the 15 generic airport keywords
+  (no place name) and the "tours and travels" / "travel agency" keywords.
+  Google marked 3 new keywords "Low search volume": "ujjain omkareshwar maheshwar taxi/cab", "car with driver ujjain". Harmless.
+- Oct 14, 2026: advance changed from Rs 250 to Rs 349 in all 4 ads (headline "Pay Just ₹349 to Confirm" + one description).
+  If the advance changes again (ADVANCE_AMOUNT in app/lib/booking.ts), the ads must be edited too: ad text does not update from the website.
+- Oct 15, 2026: before going pan-India, replaced keywords that had no "ujjain"/"indore" in them (rule: keep any keyword with ujjain or indore):
+    Omkareshwar: added "ujjain omkareshwar taxi", "ujjain omkareshwar cab", "cab from ujjain to omkareshwar";
+                 paused "omkareshwar taxi", "omkareshwar cab", "cab to omkareshwar", "taxi to omkareshwar".
+    Omkareshwar Maheshwar: added "omkareshwar maheshwar taxi from ujjain" (Google: low search volume);
+                 paused "maheshwar taxi", "maheshwar cab", "omkareshwar maheshwar taxi", "omkareshwar maheshwar cab",
+                 "omkareshwar to maheshwar taxi", "omkareshwar maheshwar tour package".
+    Kept the two "mahakal" keywords (Mahakal = Ujjain).
+
+To do
+=====
+* Add competitor negatives: travels, tour and travels, royal, citylink, gondekar, dharmendra, gajraj, hans, vinayak, ashok, bhawani, gurunanak, office, bus stand, nanakheda.
+* Location (Oct 15, 2026): 10 cities targeted: Ujjain, Indore, Ahmedabad, Mumbai, Bhopal, Delhi, Pune, Surat, Vadodara, Jaipur.
+  Location option is "Presence or interest" (left as is): this also reaches people anywhere who search about these cities.
+  Owner plans to raise the Rs 100/day budget. After 5-7 days, check Locations report and drop cities that spend without enquiries.
+  Campaign settings seen Oct 15: bidding = Maximize clicks, AI Max = off, broad match = off, languages English + Hindi.
+  The generic keywords ("taxi near me", "airport taxi" etc.) are only in the paused Ad group 1. Keep it paused.
+  "airport transfers indore" (Indore Airport group) was left active on purpose (rule: keep anything with ujjain/indore).
+  With pan-India targeting it can match people doing Indore-city airport runs; pause it if such search terms show up.
+* Add a call asset (9752087904). Google flags it as missing because the campaign goal includes phone calls.
+* Later: separate ad groups for Mandu trips, Ujjain local sightseeing, Dewas Tekri, Pachmarhi once the main groups have data.
+* Conversion tracking (set up Oct 15, 2026, code not yet pushed live at time of writing):
+    Google Ads tag AW-18000796364; 3 new conversion actions (category Contact, Primary, count One):
+    "WhatsApp enquiry", "Call click", "Advance payment click". Enhanced conversions left off.
+    Code: app/lib/booking.ts (labels + trackConversion), app/layout.tsx (tag + auto-tracking of tel:/wa.me links),
+    booking forms call trackConversion. Tested on localhost: all 3 fire.
+    After it is live, check Goals > Conversions: status should change from "Unverified" to "Recording conversions" within ~1 day.
+    Then consider switching bidding from Maximize clicks to Maximize conversions once ~15-30 conversions are recorded.
+* Check whether AI Max is on in campaign settings (it can match searches beyond the keywords).

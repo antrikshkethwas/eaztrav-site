@@ -32,7 +32,10 @@
 ## SEO and marketing (already set up, don't break these)
 - Google Search Console verified; sitemap submitted at https://eaztrav.com/sitemap.xml
 - Google Business listing added
-- layout.tsx has the Google Analytics (GA4) gtag.js tag (G-3ZJXZHQ8HQ). There is no Google Ads (AW-) tag yet, so WhatsApp/call enquiries are not tracked in Google Ads
+- layout.tsx loads gtag.js with Google Analytics (G-3ZJXZHQ8HQ) and the Google Ads tag (AW-18000796364)
+- Google Ads conversion tracking: the conversion labels and trackConversion() live in app/lib/booking.ts.
+  layout.tsx reports every tel: link tap ("Call click") and wa.me link tap ("WhatsApp enquiry") automatically.
+  Buttons that use window.open must call trackConversion("whatsapp") or trackConversion("payment") themselves (see handleBook/handlePay in the booking forms). New WhatsApp/pay buttons need this too.
 - Google Ads campaign status, findings and to-do list live in the "Google Ads plan" file in the project root
 
 ## Future ideas

@@ -32,6 +32,24 @@ export function paymentPageLink(details: { trip: string; vehicle: string; date: 
   return `${RAZORPAY_PAYMENT_PAGE}?${query}`;
 }
 
+// Google Ads tag and conversion actions (Google Ads > Goals > Conversions,
+// account 487-041-0160). layout.tsx loads the tag; trackConversion reports a tap.
+export const GOOGLE_ADS_ID = "AW-18000796364";
+export const ADS_CONVERSIONS = {
+  whatsapp: "AW-18000796364/Z3CVCN6rhp0dEMy1uYdD", // "WhatsApp enquiry"
+  call: "AW-18000796364/Qow9COGrhp0dEMy1uYdD", // "Call click"
+  payment: "AW-18000796364/jASQCOSrhp0dEMy1uYdD", // "Advance payment click"
+};
+
+// Tells Google Ads that a visitor tapped WhatsApp, call or pay.
+// Plain call/WhatsApp links are tracked automatically by layout.tsx;
+// use this for buttons that open WhatsApp or Razorpay with window.open.
+export function trackConversion(kind: keyof typeof ADS_CONVERSIONS) {
+  if (typeof window === "undefined") return;
+  const gtag = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+  gtag?.("event", "conversion", { send_to: ADS_CONVERSIONS[kind] });
+}
+
 // Builds a WhatsApp link that opens a chat with the message already typed
 export function whatsappLink(message: string) {
   const text = message.replace(/\s+/g, " ").trim();

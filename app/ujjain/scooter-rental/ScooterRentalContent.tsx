@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { CALL_NUMBER, dateOptions, timeOptions, whatsappLink } from "../../lib/booking";
+import { CALL_NUMBER, dateOptions, timeOptions, trackConversion, whatsappLink } from "../../lib/booking";
 
 type Scooter = {
   name: string;
@@ -40,6 +40,7 @@ function ScooterCard({ scooter }: { scooter: Scooter }) {
     const dateText = date ? `on ${date}` : "";
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book ${scooter.name} ${dateText} ${timeText}`;
+    trackConversion("whatsapp");
     window.open(whatsappLink(message), "_blank");
   };
 

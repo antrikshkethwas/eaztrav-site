@@ -2,6 +2,7 @@ import Script from 'next/script'
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ADS_CONVERSIONS, GOOGLE_ADS_ID } from "./lib/booking";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-3ZJXZHQ8HQ');
+            gtag('config', '${GOOGLE_ADS_ID}');
+
+            // Report every call link and WhatsApp link tap to Google Ads
+            document.addEventListener('click', function (e) {
+              var link = e.target.closest && e.target.closest('a[href]');
+              if (!link) return;
+              var href = link.getAttribute('href') || '';
+              if (href.indexOf('tel:') === 0) {
+                gtag('event', 'conversion', { send_to: '${ADS_CONVERSIONS.call}' });
+              } else if (href.indexOf('wa.me/') !== -1) {
+                gtag('event', 'conversion', { send_to: '${ADS_CONVERSIONS.whatsapp}' });
+              }
+            }, true);
           `}
         </Script>
         {children}

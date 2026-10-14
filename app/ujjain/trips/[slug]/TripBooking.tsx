@@ -7,6 +7,7 @@ import {
   dateOptions,
   paymentPageLink,
   timeOptions,
+  trackConversion,
   whatsappLink,
 } from "../../../lib/booking";
 import VehiclePicture from "../../../components/VehiclePicture";
@@ -48,6 +49,7 @@ export default function TripBooking({
       date,
       time,
     });
+    trackConversion("payment");
     window.open(link, "_blank");
   };
 
@@ -56,6 +58,7 @@ export default function TripBooking({
     const dateText = date ? `on ${date}` : "";
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book the ${tripName} trip ${vehicleText} ${dateText} ${timeText}`;
+    trackConversion("whatsapp");
     window.open(whatsappLink(message), "_blank");
   };
 

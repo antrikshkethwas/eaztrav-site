@@ -8,6 +8,7 @@ import {
   dateOptions,
   paymentPageLink,
   timeOptions,
+  trackConversion,
   whatsappLink,
 } from "../../lib/booking";
 import VehiclePicture from "../../components/VehiclePicture";
@@ -80,6 +81,7 @@ function CabBookingCard({
     }
     setError("");
     const link = paymentPageLink({ trip: `Cab: ${pickup} to ${drop}`, vehicle: vehicleName, date, time });
+    trackConversion("payment");
     window.open(link, "_blank");
   };
 
@@ -90,6 +92,7 @@ function CabBookingCard({
     const dateText = date ? `on ${date}` : "";
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book a cab ${vehicleText} in Ujjain ${fromText} ${toText} ${dateText} ${timeText}`;
+    trackConversion("whatsapp");
     window.open(whatsappLink(message), "_blank");
   };
 
