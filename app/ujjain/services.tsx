@@ -77,6 +77,26 @@ export function BreadcrumbJsonLd({ name, path, parent }: { name: string; path: s
   );
 }
 
+// Tells Google the questions and answers in a page's FAQ section, so they
+// can show up directly in search results. Pass the same list the page shows.
+export function FaqJsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+    />
+  );
+}
+
 // Links to the other Ujjain services and the travel guides, shown at the
 // bottom of each service page. Pass the page's own address as `current`
 // so it doesn't link to itself.

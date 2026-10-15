@@ -27,7 +27,11 @@
   - Payment: trip pages and the cab page open the Razorpay Payment Page "EazTrav Cab Booking" (pl_TmilCW97hJe3er) pre-filled via URL with trip, vehicle, date_of_travel, pickup_time. These names must match the field labels on the Razorpay page. The amount is set in Razorpay; ADVANCE_AMOUNT is only display text, keep them equal.
 - next.config.ts allowedDevOrigins holds the PC's Wi-Fi IP so the dev site works on a phone; update it if the IP changes
 - proxy.ts redirects the old capitalised URLs (/Ujjain, /Bangalore) to the new ones. Old /Ujjain goes to /ujjain/scooter-rental. Don't remove it.
-- app/sitemap.ts lists homepage + Ujjain pages (Bangalore excluded until it goes live)
+- app/sitemap.ts lists homepage, about, contact + Ujjain pages (Bangalore excluded until it goes live)
+- app/robots.ts serves /robots.txt and points to the sitemap
+- /bangalore is marked noindex (robots in its metadata) until it launches; at launch remove that line and add it to sitemap.ts
+- Structured data (JSON-LD) helpers live in app/ujjain/services.tsx: BreadcrumbJsonLd and FaqJsonLd. Pages with an FAQ section pass the same faqs list to FaqJsonLd (trip pages, cab page)
+- layout.tsx sets metadataBase and the default openGraph preview (used when links are shared on WhatsApp/Facebook)
 
 ## SEO and marketing (already set up, don't break these)
 - Google Search Console verified; sitemap submitted at https://eaztrav.com/sitemap.xml

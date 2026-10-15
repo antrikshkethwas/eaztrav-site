@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+
+// Bangalore isn't live yet: keep this "coming soon" page out of Google
+// until it is. Remove the robots line (and add it to sitemap.ts) at launch.
+export const metadata: Metadata = {
+  title: "Cabs in Bangalore — Coming Soon | EazTrav",
+  robots: { index: false, follow: true },
+};
 
 export default function Bangalore() {
   return (

@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Contact us | EazTrav",
-  description: "Contact EazTrav for scooter and bike rentals in Ujjain. Call or WhatsApp for instant booking, or reach us by email.",
+  title: "Contact EazTrav | Cabs, Trips & Scooter Rental in Ujjain",
+  description: "Contact EazTrav in Freeganj, Ujjain for cabs with driver, Omkareshwar and Mahakal trips, Indore airport transfers and scooter rental. Call or WhatsApp for instant booking.",
+  alternates: { canonical: "https://www.eaztrav.com/contact" },
 };
 
 export default function ContactPage() {

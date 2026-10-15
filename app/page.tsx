@@ -1,13 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-<Image
-      src="/logo.png"
-      alt="eazTrav"
-      width={140}
-      height={40}
-      priority
-/>
+// The homepage's own address, so Google treats eaztrav.com/ (with or without
+// tracking codes on the end) as one page
+export const metadata: Metadata = {
+  alternates: { canonical: 'https://www.eaztrav.com' },
+}
 
 export default function Home() {
   return (
@@ -76,7 +75,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center text-center px-6 py-24 bg-gradient-to-b from-gray-50 to-white">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 max-w-3xl leading-tight">
-          Your Ride, <span className="text-[#3FA3D1]">Anytime, Anywhere.</span>
+          Cabs &amp; Trips in Ujjain, <span className="text-[#3FA3D1]">Anytime, Anywhere.</span>
         </h1>
         <p className="mt-6 text-lg text-gray-600 max-w-xl">
           Fast, reliable, and affordable cab service at your fingertips. Book in seconds, ride in comfort.

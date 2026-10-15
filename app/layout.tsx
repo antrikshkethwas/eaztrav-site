@@ -2,7 +2,7 @@ import Script from 'next/script'
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ADS_CONVERSIONS, GOOGLE_ADS_ID } from "./lib/booking";
+import { ADS_CONVERSIONS, GOOGLE_ADS_ID, SITE_URL } from "./lib/booking";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,9 +14,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Default title and description, used by any page that doesn't set its own.
+// metadataBase turns relative image paths into full links, and openGraph
+// controls the preview card when a page link is shared on WhatsApp or Facebook.
 export const metadata: Metadata = {
-  title: "EazTrav — Rent Scooters & Cabs in Ujjain & Bangalore",
-  description: "Book affordable scooters, bikes and cabs in Ujjain and Bangalore. Hourly and daily rentals, instant booking via WhatsApp or call.",
+  metadataBase: new URL(SITE_URL),
+  title: "EazTrav — Cabs, Trips & Scooter Rental in Ujjain",
+  description: "Book a cab with driver, a trip to Omkareshwar, Maheshwar or Mandu, or rent a scooter in Ujjain. Fixed fares, instant booking via WhatsApp or call.",
+  openGraph: {
+    siteName: "EazTrav",
+    type: "website",
+    locale: "en_IN",
+    images: [{ url: "/web-app-manifest-512x512.png", width: 512, height: 512, alt: "EazTrav" }],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

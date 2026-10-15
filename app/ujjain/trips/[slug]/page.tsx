@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "../../../components/Navbar";
 import { ADVANCE_AMOUNT } from "../../../lib/booking";
-import { Breadcrumb, BreadcrumbJsonLd, MoreInUjjain } from "../../services";
+import { Breadcrumb, BreadcrumbJsonLd, FaqJsonLd, MoreInUjjain } from "../../services";
 import { fromPrice, getTrip, rupees, trips, vehicleGroups, vehicles, type Trip } from "../trips";
 import TripBooking from "./TripBooking";
 
@@ -66,6 +66,7 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <BreadcrumbJsonLd name={trip.name} path={path} parent={{ name: "Trips", path: "/ujjain/trips" }} />
+      <FaqJsonLd faqs={faqs} />
       <Navbar />
       <Breadcrumb current={trip.name} parent={{ name: "Trips", path: "/ujjain/trips" }} />
 

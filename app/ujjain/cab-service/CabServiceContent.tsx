@@ -12,6 +12,7 @@ import {
   whatsappLink,
 } from "../../lib/booking";
 import VehiclePicture from "../../components/VehiclePicture";
+import { FaqJsonLd } from "../services";
 import { fromPrice, getTrip, groupIcons, rupees, vehicleGroups, vehicles, type Trip } from "../trips/trips";
 
 // ============================================================
@@ -326,6 +327,7 @@ export default function CabServiceContent() {
       </section>
 
       {/* FAQ */}
+      <FaqJsonLd faqs={faqs} />
       <section className="max-w-2xl mx-auto px-6 mt-12">
         <h2 className="text-lg font-bold text-gray-900 text-center mb-4">Frequently asked questions</h2>
         <div className="space-y-3">
