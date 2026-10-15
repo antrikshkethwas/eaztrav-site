@@ -26,6 +26,12 @@ Done
                  paused "maheshwar taxi", "maheshwar cab", "omkareshwar maheshwar taxi", "omkareshwar maheshwar cab",
                  "omkareshwar to maheshwar taxi", "omkareshwar maheshwar tour package".
     Kept the two "mahakal" keywords (Mahakal = Ujjain).
+- Oct 15, 2026: day review. 12 clicks, 363 impr, Rs 217, avg CPC Rs 18; 11 clicks matched Ujjain, 1 Mumbai.
+  7 of 9 visible search terms were genuine (ujjain to omkareshwar taxi, ujjain taxi service, car on rent ujjain...).
+  1 real enquiry (by phone/WhatsApp, a local Ujjain person). Budget is now Rs 250/day.
+  Added campaign negatives (broad): bhati (competitor "bhati taxi"), job, salary, vacancy ("car driver in ujjain" = job seekers).
+  Existing negative list on the campaign: "negative ujjain tours and travels".
+  Don't add "travels" / "tour and travels" as negatives: "ujjain to omkareshwar tour and travels" was a genuine click.
 
 To do
 =====
@@ -39,7 +45,7 @@ To do
   With pan-India targeting it can match people doing Indore-city airport runs; pause it if such search terms show up.
 * Add a call asset (9752087904). Google flags it as missing because the campaign goal includes phone calls.
 * Later: separate ad groups for Mandu trips, Ujjain local sightseeing, Dewas Tekri, Pachmarhi once the main groups have data.
-* Conversion tracking (set up Oct 15, 2026, code not yet pushed live at time of writing):
+* Conversion tracking (set up and deployed Oct 15, 2026, commit f5e22a5; verified the AW tag loads on www.eaztrav.com):
     Google Ads tag AW-18000796364; 3 new conversion actions (category Contact, Primary, count One):
     "WhatsApp enquiry", "Call click", "Advance payment click". Enhanced conversions left off.
     Code: app/lib/booking.ts (labels + trackConversion), app/layout.tsx (tag + auto-tracking of tel:/wa.me links),
