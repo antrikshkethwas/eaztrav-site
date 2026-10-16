@@ -10,7 +10,9 @@ import {
   timeOptions,
   trackConversion,
   whatsappLink,
+  withReferral,
 } from "../../lib/booking";
+import TrustStrip from "../../components/TrustStrip";
 import VehiclePicture from "../../components/VehiclePicture";
 import { FaqJsonLd } from "../services";
 import { fromPrice, getTrip, groupIcons, rupees, vehicleGroups, vehicles, type Trip } from "../trips/trips";
@@ -34,12 +36,22 @@ const popularTrips = [
 // The two prices shown on each vehicle card, taken from these trips
 const localTrip = getTrip("ujjain-local-sightseeing");
 const airportTrip = getTrip("ujjain-to-indore-airport");
+
+// Sedan fares shown right under the page heading, so visitors see prices
+// before the booking form (label shown, trip address from trips.ts)
+const headlineFares = [
+  { label: "Ujjain local, full day", slug: "ujjain-local-sightseeing" },
+  { label: "Indore airport", slug: "ujjain-to-indore-airport" },
+  { label: "Omkareshwar", slug: "ujjain-to-omkareshwar" },
+]
+  .map((f) => ({ ...f, trip: getTrip(f.slug) }))
+  .filter((f): f is typeof f & { trip: Trip } => Boolean(f.trip));
 // ============================================================
 
 const faqs = [
   {
     q: "How do I book a cab in Ujjain with EazTrav?",
-    a: `Choose a vehicle, enter your pickup and drop, pick a date and time, and pay the ${ADVANCE_AMOUNT} advance online to book. We'll confirm the fare and your booking. If you have questions first, send us your trip details on WhatsApp or call us.`,
+    a: `Choose a vehicle, enter your pickup and drop, pick a date and time, and tap "Book on WhatsApp": your trip details are typed in for you and we reply with the fare and confirmation. You can also call us, or pay the ${ADVANCE_AMOUNT} advance online to confirm straight away.`,
   },
   {
     q: "How much does a cab in Ujjain cost?",
@@ -94,7 +106,7 @@ function CabBookingCard({
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book a cab ${vehicleText} in Ujjain ${fromText} ${toText} ${dateText} ${timeText}`;
     trackConversion("whatsapp");
-    window.open(whatsappLink(message), "_blank");
+    window.open(whatsappLink(withReferral(message)), "_blank");
   };
 
   return (
@@ -183,23 +195,24 @@ function CabBookingCard({
         </select>
       </div>
 
-      {/* Main action: pay the advance on the Razorpay Payment Page */}
+      {/* Main action: book on WhatsApp (sends whatever details are filled in) */}
       <div className="border-t border-gray-100 pt-4">
         <button
-          onClick={handlePay}
-          className="w-full bg-[#173F73] text-white font-semibold py-3 rounded-full hover:opacity-90 transition"
+          onClick={handleBook}
+          className="w-full bg-[#25D366] text-white font-semibold py-3 rounded-full hover:bg-[#1EBE5A] transition"
         >
-          Pay {ADVANCE_AMOUNT} advance to book
+          Book on WhatsApp
+        </button>
+        <p className="text-xs text-gray-500 mt-2">Ask anything first. No payment needed to enquire.</p>
+
+        {/* Second option: pay the advance now on the Razorpay Payment Page */}
+        <button
+          onClick={handlePay}
+          className="w-full mt-4 border-2 border-[#173F73] text-[#173F73] font-semibold py-2.5 rounded-full hover:bg-[#173F73] hover:text-white transition"
+        >
+          Or pay {ADVANCE_AMOUNT} advance to confirm now
         </button>
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
-
-        {/* Second option: ask on WhatsApp (sends whatever details are filled in) */}
-        <button
-          onClick={handleBook}
-          className="w-full mt-3 bg-[#25D366] text-white font-semibold py-3 rounded-full hover:bg-[#1EBE5A] transition"
-        >
-          Enquire on WhatsApp
-        </button>
 
         <p className="text-xs text-gray-500 mt-3">
           Secure payment by Razorpay · UPI, card or net banking. Your trip details are filled in for you.
@@ -234,6 +247,21 @@ export default function CabServiceContent() {
         <p className="text-xs text-gray-600 max-w-md mx-auto">
           Cab with driver for temple visits, airport transfers and day trips. Sedan, SUV, Tempo Traveller or mini bus.
         </p>
+
+        {/* Sedan fares up front, each linking to its trip page */}
+        <div className="flex flex-wrap justify-center gap-2 mt-3">
+          {headlineFares.map((f) => (
+            <Link
+              key={f.slug}
+              href={`/ujjain/trips/${f.slug}`}
+              className="bg-[#173F73]/5 border border-[#173F73]/15 rounded-xl px-3 py-1.5 text-left hover:bg-[#173F73]/10 transition"
+            >
+              <span className="block text-sm font-bold text-gray-900">{rupees(fromPrice(f.trip))}</span>
+              <span className="block text-[11px] text-gray-600">{f.label} · Sedan</span>
+            </Link>
+          ))}
+        </div>
+        <TrustStrip />
       </div>
 
       <div ref={bookingRef} className="max-w-md mx-auto px-4 mt-4 scroll-mt-20">

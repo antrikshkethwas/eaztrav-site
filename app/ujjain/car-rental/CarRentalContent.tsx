@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { CALL_NUMBER, dateOptions, timeOptions, trackConversion, whatsappLink } from "../../lib/booking";
+import { CALL_NUMBER, dateOptions, timeOptions, trackConversion, whatsappLink, withReferral } from "../../lib/booking";
 
 // ============================================================
 // ✏️ YOUR CAR DETAILS — edit here
@@ -53,7 +53,7 @@ function CarCard() {
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to rent the self-drive ${car.name} ${dateText} ${timeText}`;
     trackConversion("whatsapp");
-    window.open(whatsappLink(message), "_blank");
+    window.open(whatsappLink(withReferral(message)), "_blank");
   };
 
   return (

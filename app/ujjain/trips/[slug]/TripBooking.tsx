@@ -9,14 +9,16 @@ import {
   timeOptions,
   trackConversion,
   whatsappLink,
+  withReferral,
 } from "../../../lib/booking";
 import VehiclePicture from "../../../components/VehiclePicture";
 import { rupees, type Vehicle } from "../trips";
 
 // Booking form on a trip page: pick a vehicle, date and time, then
-// "Pay advance" opens the Razorpay Payment Page with those details already
-// filled in, so the payment records which trip and vehicle was booked.
-// WhatsApp and call are kept as small secondary links.
+// "Book on WhatsApp" (the main button) opens a chat with those details typed in.
+// Most first-time visitors want to ask before paying, so paying the advance
+// on the Razorpay Payment Page is the second option; it fills in trip,
+// vehicle, date and time so the payment records what was booked.
 // The photo, seats and fare at the top change with the selected vehicle.
 export default function TripBooking({
   tripName,
@@ -59,7 +61,7 @@ export default function TripBooking({
     const timeText = time ? `at ${time}` : "";
     const message = `Hi, I want to book the ${tripName} trip ${vehicleText} ${dateText} ${timeText}`;
     trackConversion("whatsapp");
-    window.open(whatsappLink(message), "_blank");
+    window.open(whatsappLink(withReferral(message)), "_blank");
   };
 
   return (
@@ -131,23 +133,24 @@ export default function TripBooking({
         </select>
       </div>
 
-      {/* Main action: pay the advance on the Razorpay Payment Page */}
+      {/* Main action: book on WhatsApp (sends whatever details are filled in) */}
       <div className="border-t border-gray-100 pt-4">
         <button
-          onClick={handlePay}
-          className="w-full bg-[#173F73] text-white font-semibold py-3 rounded-full hover:opacity-90 transition"
+          onClick={handleBook}
+          className="w-full bg-[#25D366] text-white font-semibold py-3 rounded-full hover:bg-[#1EBE5A] transition"
         >
-          Pay {ADVANCE_AMOUNT} advance to book
+          Book on WhatsApp
+        </button>
+        <p className="text-xs text-gray-500 mt-2">Ask anything first. No payment needed to enquire.</p>
+
+        {/* Second option: pay the advance now on the Razorpay Payment Page */}
+        <button
+          onClick={handlePay}
+          className="w-full mt-4 border-2 border-[#173F73] text-[#173F73] font-semibold py-2.5 rounded-full hover:bg-[#173F73] hover:text-white transition"
+        >
+          Or pay {ADVANCE_AMOUNT} advance to confirm now
         </button>
         {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
-
-        {/* Second option: ask on WhatsApp (sends whatever details are filled in) */}
-        <button
-          onClick={handleBook}
-          className="w-full mt-3 bg-[#25D366] text-white font-semibold py-3 rounded-full hover:bg-[#1EBE5A] transition"
-        >
-          Enquire on WhatsApp
-        </button>
 
         <p className="text-xs text-gray-500 mt-3">
           Secure payment by Razorpay · UPI, card or net banking. Your trip details are filled in for you.

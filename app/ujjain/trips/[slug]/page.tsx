@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "../../../components/Navbar";
+import TrustStrip from "../../../components/TrustStrip";
 import { ADVANCE_AMOUNT } from "../../../lib/booking";
 import { Breadcrumb, BreadcrumbJsonLd, FaqJsonLd, MoreInUjjain } from "../../services";
 import { fromPrice, getTrip, rupees, trips, vehicleGroups, vehicles, type Trip } from "../trips";
@@ -42,7 +43,7 @@ function tripFaqs(trip: Trip) {
     },
     {
       q: "How do I book this trip?",
-      a: `Choose your vehicle, date and time above and pay the ${ADVANCE_AMOUNT} advance online to confirm your booking. If you have questions first, send us your trip details on WhatsApp or call us.`,
+      a: `Choose your vehicle, date and time above and tap "Book on WhatsApp": your trip details are typed in for you and we reply with confirmation. You can also call us, or pay the ${ADVANCE_AMOUNT} advance online to confirm straight away.`,
     },
   ];
   if (trip.enquire) {
@@ -78,6 +79,7 @@ export default async function TripPage({ params }: PageProps<"/ujjain/trips/[slu
           <span className="font-bold text-gray-900">{rupees(fromPrice(trip))}</span>
         </p>
         <p className="text-sm text-[#173F73] font-semibold mt-3">{trip.stops.join(" → ")}</p>
+        <TrustStrip />
         <p className="text-sm text-gray-600 max-w-lg mx-auto mt-3">{trip.description}</p>
         {trip.enquire && (
           <p className="text-sm text-gray-600 max-w-lg mx-auto mt-2">
