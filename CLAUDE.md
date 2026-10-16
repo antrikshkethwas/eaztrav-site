@@ -40,6 +40,11 @@
 - Google Ads conversion tracking: the conversion labels and trackConversion() live in app/lib/booking.ts.
   layout.tsx reports every tel: link tap ("Call click") and wa.me link tap ("WhatsApp enquiry") automatically.
   Buttons that use window.open must call trackConversion("whatsapp") or trackConversion("payment") themselves (see handleBook/handlePay in the booking forms). New WhatsApp/pay buttons need this too.
+  Every tap is also sent to Google Analytics as a "generate_lead" event (method + hotel_ref), by trackConversion and by the layout.tsx listener.
+- Booking buttons are WhatsApp-first: "Book on WhatsApp" is the main (green) button, paying the ₹349 advance is the second (outlined) option. app/components/TrustStrip.tsx (office, fixed fares, hours) sits under the heading on trip and cab pages; keep its lines true.
+- Hotel QR referrals: partner hotels are listed in app/h/hotels.ts. /h/<code> is the guest welcome page (saves the code in the browser for 30 days), /h/<code>/card is the printable A6 QR card (qrcode package, QR has utm_source=hotel). Both are noindex.
+  While a code is saved, WhatsApp messages get "(Ref: code)" (withReferral() in booking forms; layout.tsx does it for plain wa.me links) and the Razorpay trip text gets "[Ref: code]". New WhatsApp buttons should wrap their message in withReferral().
+- Guide pages (app/ujjain/guide/...) use GuidePage; cab-related guides pass bottomCta={<CabCta .../>}. New guides go in the guides list in GuidePage.tsx and in sitemap.ts. Fare tables in guides read from trips.ts.
 - Google Ads campaign status, findings and to-do list live in the "Google Ads plan" file in the project root
 
 ## Future ideas

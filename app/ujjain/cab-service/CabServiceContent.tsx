@@ -249,18 +249,19 @@ export default function CabServiceContent() {
         </p>
 
         {/* Sedan fares up front, each linking to its trip page */}
-        <div className="flex flex-wrap justify-center gap-2 mt-3">
+        <div className="grid grid-cols-3 gap-2 max-w-md mx-auto mt-3">
           {headlineFares.map((f) => (
             <Link
               key={f.slug}
               href={`/ujjain/trips/${f.slug}`}
-              className="bg-[#173F73]/5 border border-[#173F73]/15 rounded-xl px-3 py-1.5 text-left hover:bg-[#173F73]/10 transition"
+              className="bg-[#173F73]/5 border border-[#173F73]/15 rounded-xl px-2 py-1.5 hover:bg-[#173F73]/10 transition"
             >
               <span className="block text-sm font-bold text-gray-900">{rupees(fromPrice(f.trip))}</span>
-              <span className="block text-[11px] text-gray-600">{f.label} · Sedan</span>
+              <span className="block text-[10px] leading-tight text-gray-600">{f.label}</span>
             </Link>
           ))}
         </div>
+        <p className="text-[10px] text-gray-500 mt-1">Sedan fares · SUV, Tempo Traveller &amp; bus below</p>
         <TrustStrip />
       </div>
 
