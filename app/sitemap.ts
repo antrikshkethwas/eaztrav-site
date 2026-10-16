@@ -78,6 +78,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: 'https://www.eaztrav.com/ujjain/guide/ujjain-to-omkareshwar',
+      lastModified: new Date('2026-10-17'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: 'https://www.eaztrav.com/ujjain/guide/indore-airport-to-ujjain',
+      lastModified: new Date('2026-10-17'),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
     /*
     {
       url: 'https://www.eaztrav.com/bangalore',

@@ -27,6 +27,16 @@ export const guides = [
     title: "Getting Around Ujjain",
     blurb: "Railway station to Mahakal, auto fares vs renting a scooter.",
   },
+  {
+    href: "/ujjain/guide/ujjain-to-omkareshwar",
+    title: "Ujjain to Omkareshwar Trip Guide",
+    blurb: "Distance, travel time, route, day plan and taxi fares.",
+  },
+  {
+    href: "/ujjain/guide/indore-airport-to-ujjain",
+    title: "Indore Airport to Ujjain",
+    blurb: "Distance, taxi fares, buses and tips for reaching Mahakal.",
+  },
 ];
 
 export type Faq = { q: string; a: string };
@@ -62,16 +72,55 @@ export function ScooterCta({ message = "Hi, I want to rent a scooter in Ujjain" 
   );
 }
 
+// Same idea as ScooterCta, for guides about cab trips (Omkareshwar, airport)
+export function CabCta({
+  message = "Hi, I want to book a cab in Ujjain",
+  title = "🚗 Book a cab with driver",
+  text = "Fixed fares from Ujjain, sedan to mini bus. Book in a minute on WhatsApp.",
+  href = "/ujjain/cab-service",
+  linkText = "See cabs & prices",
+}: {
+  message?: string;
+  title?: string;
+  text?: string;
+  href?: string;
+  linkText?: string;
+}) {
+  return (
+    <div className="my-8 rounded-3xl bg-[#173F73] text-white p-6 shadow-sm">
+      <p className="text-lg font-bold">{title}</p>
+      <p className="text-sm text-white/80 mt-1">{text}</p>
+      <div className="flex flex-col sm:flex-row gap-3 mt-4">
+        <a
+          href={whatsappLink(message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-1 bg-green-600 text-white font-semibold py-3 rounded-full hover:bg-green-700 transition text-center"
+        >
+          Book on WhatsApp
+        </a>
+        <Link
+          href={href}
+          className="flex-1 bg-white text-[#173F73] font-semibold py-3 rounded-full hover:opacity-90 transition text-center"
+        >
+          {linkText}
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 type GuidePageProps = {
   slug: string; // e.g. "mahakaleshwar-temple"
   title: string; // the H1 on the page
   intro: string; // short summary under the H1
   updated: string; // e.g. "2026-09-30", shown to readers and to Google
   faqs: Faq[];
+  bottomCta?: ReactNode; // box shown after the FAQ; defaults to the scooter box
   children: ReactNode;
 };
 
-export default function GuidePage({ slug, title, intro, updated, faqs, children }: GuidePageProps) {
+export default function GuidePage({ slug, title, intro, updated, faqs, bottomCta, children }: GuidePageProps) {
   const url = `${SITE_URL}/ujjain/guide/${slug}`;
 
   const jsonLd = [
@@ -166,7 +215,7 @@ export default function GuidePage({ slug, title, intro, updated, faqs, children 
           </div>
         </section>
 
-        <ScooterCta />
+        {bottomCta ?? <ScooterCta />}
 
         {/* Other guides */}
         <section className="mt-10">
