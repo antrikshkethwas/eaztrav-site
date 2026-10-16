@@ -32,6 +32,13 @@ Done
   Added campaign negatives (broad): bhati (competitor "bhati taxi"), job, salary, vacancy ("car driver in ujjain" = job seekers).
   Existing negative list on the campaign: "negative ujjain tours and travels".
   Don't add "travels" / "tour and travels" as negatives: "ujjain to omkareshwar tour and travels" was a genuine click.
+- Oct 15, 2026 (full day): 15 clicks, 446 impr, Rs 265, 1 tracked conversion (from "cheapest cab service in ujjain").
+- Oct 16, 2026 (to 9:30 PM): 15 clicks, 557 impr, Rs 267, 0 tracked conversions. Ujjain 13 clicks, Indore 2.
+  Owner's real count: 2 calls total over Oct 15-16. So roughly Rs 265 per call.
+  Poor-fit terms seen: "how far is omkareshwar from ujjain" (info only), "ujjain ola uber" (wants app ride),
+  "taxi service in indore airport" (Indore-local). Avg CPC creeping up to ~Rs 18.
+- Oct 16, 2026: added campaign negatives (broad): how far, distance, ola, uber.
+  Budget lowered from Rs 250/day back to Rs 100/day (owner's call while landing pages get fixed).
 
 To do
 =====
