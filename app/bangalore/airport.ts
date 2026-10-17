@@ -40,6 +40,7 @@ export const airportCars: AirportCar[] = [
     seats: "4+1",
     fare: 2100,
     extraPerKm: 18,
+    img: "/images/mg_zs.png",
     note: "Electric SUV: quiet, smooth and spacious",
   },
 ];
