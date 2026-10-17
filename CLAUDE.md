@@ -14,7 +14,10 @@
 ## Site structure
 - URLs are lowercase: city page, then one sub-page per service (e.g. /ujjain/scooter-rental)
 - Homepage: two large buttons, Bangalore and Ujjain, each linking to a city page (/bangalore, /ujjain)
-- Bangalore page (/bangalore): cabs for booking (Tata Nexon, Suzuki Dezire, Suzuki Wagon-R, MG ZS EV). Not live yet.
+- Bangalore page (/bangalore): city page; for now its only service is the airport taxi.
+  - /bangalore/airport-taxi: fixed-fare pickup/drop at Bangalore airport. Cars, fares, included km (50) and extra-km rates live in app/bangalore/airport.ts (Sedan: Suzuki Dzire ₹1,200 + ₹12/km; Luxury EV: MG ZS EV ₹2,100 + ₹18/km).
+    WhatsApp-first booking with flight number and 24-hour times; no online advance payment for Bangalore yet. Tolls, night charges and waiting time are not stated on the page (not confirmed by the owner).
+  - Breadcrumb/BreadcrumbJsonLd (services.tsx) take a `city` prop, and TrustStrip takes `points`, so Bangalore pages use their own city and trust lines.
 - Ujjain city page (/ujjain): menu of the Ujjain services. The service list lives in app/ujjain/services.tsx.
   - /ujjain/scooter-rental: scooters for rent
   - /ujjain/car-rental: self-drive car (Maruti Suzuki Dzire)
@@ -27,9 +30,8 @@
   - Payment: trip pages and the cab page open the Razorpay Payment Page "EazTrav Cab Booking" (pl_TmilCW97hJe3er) pre-filled via URL with trip, vehicle, date_of_travel, pickup_time. These names must match the field labels on the Razorpay page. The amount is set in Razorpay; ADVANCE_AMOUNT is only display text, keep them equal.
 - next.config.ts allowedDevOrigins holds the PC's Wi-Fi IP so the dev site works on a phone; update it if the IP changes
 - proxy.ts redirects the old capitalised URLs (/Ujjain, /Bangalore) to the new ones. Old /Ujjain goes to /ujjain/scooter-rental. Don't remove it.
-- app/sitemap.ts lists homepage, about, contact + Ujjain pages (Bangalore excluded until it goes live)
+- app/sitemap.ts lists homepage, about, contact, Ujjain pages and the Bangalore pages
 - app/robots.ts serves /robots.txt and points to the sitemap
-- /bangalore is marked noindex (robots in its metadata) until it launches; at launch remove that line and add it to sitemap.ts
 - Structured data (JSON-LD) helpers live in app/ujjain/services.tsx: BreadcrumbJsonLd and FaqJsonLd. Pages with an FAQ section pass the same faqs list to FaqJsonLd (trip pages, cab page)
 - layout.tsx sets metadataBase and the default openGraph preview (used when links are shared on WhatsApp/Facebook)
 

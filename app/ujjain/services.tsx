@@ -36,14 +36,18 @@ export const services = [
 // An in-between page in the trail, e.g. { name: "Trips", path: "/ujjain/trips" }
 type Crumb = { name: string; path: string };
 
+// The city level of the trail. Ujjain unless a page passes another city.
+const UJJAIN: Crumb = { name: "Ujjain", path: "/ujjain" };
+
 // Small "Home › Ujjain › This page" trail at the top of a service page.
-// Pass `parent` for pages one level deeper (Home › Ujjain › Trips › This page).
-export function Breadcrumb({ current, parent }: { current: string; parent?: Crumb }) {
+// Pass `parent` for pages one level deeper (Home › Ujjain › Trips › This page),
+// and `city` for pages of another city (Home › Bangalore › This page).
+export function Breadcrumb({ current, parent, city = UJJAIN }: { current: string; parent?: Crumb; city?: Crumb }) {
   return (
     <p className="text-xs text-gray-500 px-4 sm:px-6 pt-3 max-w-3xl mx-auto">
       <Link href="/" className="hover:underline">Home</Link>
       {" › "}
-      <Link href="/ujjain" className="hover:underline">Ujjain</Link>
+      <Link href={city.path} className="hover:underline">{city.name}</Link>
       {parent && (
         <>
           {" › "}
@@ -57,10 +61,20 @@ export function Breadcrumb({ current, parent }: { current: string; parent?: Crum
 }
 
 // Tells Google where this page sits in the site (Home › Ujjain › This page)
-export function BreadcrumbJsonLd({ name, path, parent }: { name: string; path: string; parent?: Crumb }) {
+export function BreadcrumbJsonLd({
+  name,
+  path,
+  parent,
+  city = UJJAIN,
+}: {
+  name: string;
+  path: string;
+  parent?: Crumb;
+  city?: Crumb;
+}) {
   const trail = [
     { name: "Home", item: SITE_URL },
-    { name: "Ujjain", item: `${SITE_URL}/ujjain` },
+    { name: city.name, item: `${SITE_URL}${city.path}` },
     ...(parent ? [{ name: parent.name, item: `${SITE_URL}${parent.path}` }] : []),
     { name, item: `${SITE_URL}${path}` },
   ];

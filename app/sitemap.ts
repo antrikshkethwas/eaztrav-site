@@ -90,13 +90,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    /*
+    // Bangalore city page and its services
     {
       url: 'https://www.eaztrav.com/bangalore',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    */
+    {
+      url: 'https://www.eaztrav.com/bangalore/airport-taxi',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
   ]
 }

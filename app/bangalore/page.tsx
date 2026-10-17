@@ -1,52 +1,50 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import Navbar from "../components/Navbar";
+import { airportCars, INCLUDED_KM, lowestFare, rupees } from "./airport";
 
-// Bangalore isn't live yet: keep this "coming soon" page out of Google
-// until it is. Remove the robots line (and add it to sitemap.ts) at launch.
+// Bangalore city page. For now Bangalore has one service, the airport taxi;
+// add more cards here as services launch (and add them to sitemap.ts).
 export const metadata: Metadata = {
-  title: "Cabs in Bangalore — Coming Soon | EazTrav",
-  robots: { index: false, follow: true },
+  title: `Cabs in Bangalore: Airport Taxi from ${rupees(lowestFare)} | EazTrav`,
+  description: `Fixed-fare Bangalore airport taxi from ${rupees(lowestFare)} for trips up to ${INCLUDED_KM} km. Sedan or electric SUV. Book on WhatsApp or call.`,
+  alternates: { canonical: "https://www.eaztrav.com/bangalore" },
 };
 
 export default function Bangalore() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-{/* Contact Bar */}
-      <div className="bg-gray-900 text-gray-300 text-xs px-6 py-2 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-center">
-          <span>📍 Parshvnath Tower, Freeganj, Ujjain, Madhya Pradesh (pin:456010)</span>
-          <span>✉️ eazz.trav@gmail.com</span>
-          <a href="tel:+919752087904" className="hover:text-white transition">📞 9752087904</a>
-          <a href="tel:+918305587779" className="hover:text-white transition">📞 8305587779</a>
-        </div>
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white pb-12">
+      <Navbar />
 
-      {/* Navbar */}
-      <nav className="flex items-center justify-between px-8 py-5 border-b border-gray-100">
-        <Link href="/" className="group flex flex-col min-w-max">
-          <Image src="/images/logo.png" alt="eazTrav" width={160} height={50} priority />
-        </Link>
-      </nav>
-
-      {/* Coming Soon content */}
-      <div className="flex flex-col items-center justify-center text-center px-6 py-32">
-        <div className="text-6xl mb-6">🚗</div>
-        <span className="inline-block bg-yellow-100 text-yellow-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
-          Coming Soon
-        </span>
-        <h1 className="text-4xl font-bold text-gray-900 max-w-lg">
-          Cabs in Bangalore are on their way
-        </h1>
-        <p className="mt-4 text-gray-600 max-w-md">
-          We&apos;re setting things up. Check back soon, or head over to Ujjain where scooters are ready to book.
+      <div className="text-center px-6 pt-8">
+        <p className="text-sm font-semibold text-[#3FA3D1] uppercase tracking-wide">EazTrav Bangalore</p>
+        <h1 className="text-3xl font-bold text-gray-900 mt-2">Cabs in Bangalore</h1>
+        <p className="text-sm text-gray-600 mt-2 max-w-md mx-auto">
+          Fixed-fare airport pickup and drop. Book in a minute on WhatsApp.
         </p>
+      </div>
+
+      <div className="max-w-md mx-auto px-4 mt-8">
         <Link
-          href="/ujjain"
-          className="mt-8 bg-gray-900 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-800 transition"
+          href="/bangalore/airport-taxi"
+          className="block bg-white border border-gray-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition"
         >
-          Explore Ujjain Instead
+          <p className="text-3xl">✈️</p>
+          <p className="text-lg font-bold text-gray-900 mt-2">Airport taxi</p>
+          <p className="text-sm text-gray-600 mt-1">Pickup and drop at Bangalore airport, up to {INCLUDED_KM} km.</p>
+          <div className="flex gap-4 mt-4">
+            {airportCars.map((c) => (
+              <div key={c.name}>
+                <p className="text-lg font-bold text-gray-900">{rupees(c.fare)}</p>
+                <p className="text-xs text-gray-500">{c.category} · {c.name}</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-sm font-semibold text-[#173F73]">See fares &amp; book →</p>
         </Link>
+
+        <p className="text-xs text-gray-500 text-center mt-6">More Bangalore services coming soon.</p>
       </div>
     </main>
   );
 }
-
